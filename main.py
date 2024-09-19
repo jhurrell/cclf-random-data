@@ -5,7 +5,7 @@ import subprocess
 # (CCLF1, CCLF2...) supports 9 different filename conventions so a single date 
 # will result in 18 files (primary file and summary file) 2 dates will result 
 # in 36 files and so on. 
-number_of_file_days = 1
+number_of_file_days = 3
 
 # Specifies the number of lines that will be written to each file. Note that 
 # large numbers of records will take a long time to generate and really provide 

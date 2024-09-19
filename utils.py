@@ -80,10 +80,7 @@ def generate_files(type, date, contents):
 
     # Define the path for the files.
     directory = f"./output/{type}"
-    if os.path.exists(directory):
-        shutil.rmtree(directory)
-        os.makedirs(directory, exist_ok=True)
-    else:
+    if not os.path.exists(directory):
         os.makedirs(directory, exist_ok=True)
 
     # Emit the generated data for the primary file.
