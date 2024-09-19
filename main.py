@@ -12,9 +12,9 @@ commands = [
     ["python3", "cclf_4.py", f"{number_of_file_days}", f"{number_of_lines_per_file}"],
     ["python3", "cclf_5.py", f"{number_of_file_days}", f"{number_of_lines_per_file}"],
     ["python3", "cclf_6.py", f"{number_of_file_days}", f"{number_of_lines_per_file}"],
+    ["python3", "cclf_7.py", f"{number_of_file_days}", f"{number_of_lines_per_file}"],
 ]
 
 # Call the script with arguments
 for command in commands:
     result = subprocess.run(command, capture_output=True, text=True)
-

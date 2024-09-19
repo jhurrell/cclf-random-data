@@ -14,6 +14,10 @@ def random_alpha_string(length):
     characters = string.ascii_letters
     return ''.join(random.choices(characters, k=length)).upper()
 
+def random_num_string(length):
+    characters = string.digits
+    return ''.join(random.choices(characters, k=length))
+
 def random_alphanum_string(length):
     characters = string.ascii_letters + string.digits
     return ''.join(random.choices(characters, k=length)).upper()
