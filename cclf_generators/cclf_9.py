@@ -1,5 +1,6 @@
 # cclf_9.py
 import sys
+sys.path.append("./utils/")
 from utils import generate_files, random_alpha_string, random_choice_from_array, random_date
 from datetime import datetime, timedelta
 

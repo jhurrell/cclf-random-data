@@ -78,7 +78,7 @@ def generate_files(type, date, contents):
     }
 
     # Define the path for the files.
-    directory = f"./output/{type}"
+    directory = f"./_output/{type}"
     if not os.path.exists(directory):
         os.makedirs(directory, exist_ok=True)
 

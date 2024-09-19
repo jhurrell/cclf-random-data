@@ -1,7 +1,11 @@
 # cclf_1.py
 import sys
-from utils import generate_files, random_int_by_len, random_alpha_string, random_alphanum_string, random_choice_from_array, random_date, random_float_in_range, random_int_in_range
+import sys
 from datetime import datetime, timedelta
+
+# Add the path of the folder where the module is located
+sys.path.append("./utils/")
+from utils import generate_files, random_int_by_len, random_alpha_string, random_alphanum_string, random_choice_from_array, random_date, random_float_in_range, random_int_in_range
 
 # Capture arguments or default if not provided.
 if len(sys.argv) == 3:
