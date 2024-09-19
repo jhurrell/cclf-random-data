@@ -1,8 +1,6 @@
 # cclf_1.py
 import sys
-import os
-import shutil
-from utils import random_int_by_len, random_alpha_string, random_alphanum_string, random_choice_from_array, random_date, random_float_in_range, random_int_in_range
+from utils import generate_files, random_int_by_len, random_alpha_string, random_alphanum_string, random_choice_from_array, random_date, random_float_in_range, random_int_in_range
 from datetime import datetime, timedelta
 
 # Capture arguments or default if not provided.
@@ -17,39 +15,12 @@ else:
     number_of_file_days = 1
     number_of_lines_per_file = 1000
 
-# Define the path for the file
-directory = "./cclf/cclf_1"
-shutil.rmtree(directory)
-if not os.path.exists(directory):
-    os.makedirs(directory, exist_ok=True)
-
-# Replicate the contents to each of the file types.
-def generate_files(file_date, contents):
-    files = {
-        f"P.A{random_alpha_string(3)}.ACO.ZC1Y{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.A{random_alpha_string(3)}.ACO.ZC1R{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.F{random_alpha_string(3)}.ACO.ZC1Y{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.F{random_alpha_string(3)}.ACO.ZC1R{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.D{random_alpha_string(3)}.ACO.ZC1Y{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.D{random_alpha_string(3)}.ACO.ZC1Y{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.K{random_alpha_string(3)}.ACO.ZC1Y{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.C{random_alpha_string(3)}.ACO.ZC1Y{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.F{random_alpha_string(3)}.ACO.ZC1Y{random_alpha_string(2)}.D{file_date}.T010203t",
-    }
-
-    for file in files:
-        print(f"\tCreating {file}...")
-        with open(f"{directory}/{file}", "w") as f:
-            f.write(contents)
 
 # Create n days worth of files.
 for index in range(number_of_file_days):
-    # Prepare for this file type.
+    # Initialize.
     delta = timedelta(days=index)
     file_date = (datetime(2024, 1, 1) + delta).strftime("%y%m%d")
-    print(f"CCLF1: Generating files for file_date {file_date}...")
-
-    # Initialize the file contents.
     contents = ""
 
     for _ in range(number_of_lines_per_file):
@@ -109,4 +80,4 @@ for index in range(number_of_file_days):
         contents = contents + random_alphanum_string(5)     # CLM_CONTRCTR_NUM
         contents = contents + "\n"
 
-    generate_files(file_date, contents)
+    generate_files("CCLF1", file_date, contents)

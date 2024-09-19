@@ -19,8 +19,8 @@ python3 main.py
 
 This will generate fake CCLF files for each of the file types listed in the IP.
 
-The generated files are located in the `cclf` directory and have a filename that
-includes the date, time, and type of file. The filenames follow the formats
+The generated files are located in the `output` directory and have a filename
+that includes the date, time, and type of file. The filenames follow the formats
 specified in the requirements.
 
 Each file contains random data based on the specifications provided in the IP.

@@ -3,7 +3,8 @@ import subprocess
 
 # Specifies the number of file dates that will be generated. Each file type 
 # (CCLF1, CCLF2...) supports 9 different filename conventions so a single date 
-# will result in 9 files, 2 dates will result in 18 files and so on. 
+# will result in 18 files (primary file and summary file) 2 dates will result 
+# in 36 files and so on. 
 number_of_file_days = 1
 
 # Specifies the number of lines that will be written to each file. Note that 
