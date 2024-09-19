@@ -2,7 +2,7 @@
 import sys
 import os
 import shutil
-from utils import random_int_by_len, random_alpha_string, random_alphanum_string, random_choice_from_array, random_date, random_float_in_range, random_int_in_range
+from utils import random_int_by_len, random_alpha_string, random_choice_from_array, random_date, random_float_in_range
 from datetime import datetime, timedelta
 
 # Check if there are enough arguments
@@ -73,7 +73,7 @@ for index in range(number_of_file_days):
         contents = contents + random_int_by_len(2)      # HCPCS_3_MDFR_CD
         contents = contents + random_int_by_len(2)      # HCPCS_4_MDFR_CD
 
-        # 21-30
+        # 21-23
         contents = contents + random_int_by_len(2)      # HCPCS_5_MDFR_CD
         contents = contents + random_int_by_len(5)      # CLM_REV_APC_HIPPS_CD
         contents = contents + random_int_by_len(20)     # CLM_FAC_PRVDR_OSCAR_NUM
@@ -82,5 +82,5 @@ for index in range(number_of_file_days):
 
     delta = timedelta(days=index)
     file_date = (datetime(2024, 1, 1) + delta).strftime("%y%m%d")
-    print(f"CCLF1: Generating files for file_date {file_date}...")
+    print(f"CCLF2: Generating files for file_date {file_date}...")
     generate_files(file_date, contents)        
