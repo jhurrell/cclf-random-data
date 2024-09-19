@@ -23,7 +23,7 @@ shutil.rmtree(directory)
 if not os.path.exists(directory):
     os.makedirs(directory, exist_ok=True)    
 
-# Replicate the conents to each of the file types.
+# Replicate the contents to each of the file types.
 def generate_files(file_date, contents):
     files = {
         f"P.A{random_alpha_string(3)}.ACO.ZC6Y{random_alpha_string(2)}.D{file_date}.T010203t",
@@ -44,6 +44,11 @@ def generate_files(file_date, contents):
 
 # Create n days worth of files.
 for index in range(number_of_file_days):
+    #  Prepare for this file type.
+    delta = timedelta(days=index)
+    file_date = (datetime(2024, 1, 1) + delta).strftime("%y%m%d")
+    print(f"CCLF6: Generating files for file_date {file_date}...")
+
     # Initialize the file contents.
     contents = ""
 
@@ -83,7 +88,4 @@ for index in range(number_of_file_days):
 
         contents = contents + "\n"
 
-    delta = timedelta(days=index)
-    file_date = (datetime(2024, 1, 1) + delta).strftime("%y%m%d")
-    print(f"CCLF6: Generating files for file_date {file_date}...")
     generate_files(file_date, contents)        

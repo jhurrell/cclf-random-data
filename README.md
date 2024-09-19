@@ -28,3 +28,10 @@ The scripts use Python's built-in random number generator to generate fake data
 for each field in the file. There is no intent to create realistic data, as this
 would require a significant amount of time and resources. Instead, the scripts
 generate random data that adheres to the specifications provided in the IP.
+
+## TODO
+
+[ ] Get access to real data to test assertions and fix any issues that arise.
+
+[ ] Use [faker](https://github.com/joke2k/faker) to generate realistic fake data
+for each field in the file.
