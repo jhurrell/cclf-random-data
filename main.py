@@ -1,5 +1,6 @@
 # script_a.py
 import subprocess
+import sys
 
 # Specifies the number of file dates that will be generated. Each file type 
 # (CCLF1, CCLF2...) supports 9 different filename conventions so a single date 
@@ -13,20 +14,23 @@ number_of_file_days = 3
 number_of_lines_per_file = 1000
 
 # Specifies the scripts that will be called each time main is executed.
-commands = [
-    ["python3", "cclf_1.py", f"{number_of_file_days}", f"{number_of_lines_per_file}"],
-    ["python3", "cclf_2.py", f"{number_of_file_days}", f"{number_of_lines_per_file}"],
-    ["python3", "cclf_3.py", f"{number_of_file_days}", f"{number_of_lines_per_file}"],
-    ["python3", "cclf_4.py", f"{number_of_file_days}", f"{number_of_lines_per_file}"],
-    ["python3", "cclf_5.py", f"{number_of_file_days}", f"{number_of_lines_per_file}"],
-    ["python3", "cclf_6.py", f"{number_of_file_days}", f"{number_of_lines_per_file}"],
-    ["python3", "cclf_7.py", f"{number_of_file_days}", f"{number_of_lines_per_file}"],
-    ["python3", "cclf_8.py", f"{number_of_file_days}", f"{number_of_lines_per_file}"],
-    ["python3", "cclf_9.py", f"{number_of_file_days}", f"{number_of_lines_per_file}"],
-    ["python3", "cclf_a.py", f"{number_of_file_days}", f"{number_of_lines_per_file}"],
-    ["python3", "cclf_b.py", f"{number_of_file_days}", f"{number_of_lines_per_file}"],
+scripts = [
+    "cclf_1.py", 
+    "cclf_2.py", 
+    "cclf_3.py", 
+    "cclf_4.py", 
+    "cclf_5.py", 
+    "cclf_6.py", 
+    "cclf_7.py", 
+    "cclf_8.py", 
+    "cclf_9.py", 
+    "cclf_a.py", 
+    "cclf_b.py", 
 ]
 
-# Enumerate over each command and execute.
-for command in commands:
-    result = subprocess.run(command, capture_output=False, text=True)
+# Convert the arguments to strins.
+args = [str(number_of_file_days), str(number_of_lines_per_file)]
+
+for script in scripts:
+    # Use sys.executable to get the Python interpreter used to run this script (cross-platform)
+    result = subprocess.run([sys.executable, script] + args, capture_output=False, text=True)
