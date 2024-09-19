@@ -27,15 +27,15 @@ if not os.path.exists(directory):
 # Replicate the conents to each of the file types.
 def generate_files(file_date, contents):
     files = {
-        f"P.A{random_alpha_string(3)}.ACO.ZC4Y{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.A{random_alpha_string(3)}.ACO.ZC4R{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.F{random_alpha_string(3)}.ACO.ZC4Y{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.F{random_alpha_string(3)}.ACO.ZC4R{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.D{random_alpha_string(3)}.ACO.ZC4Y{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.D{random_alpha_string(3)}.ACO.ZC4Y{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.K{random_alpha_string(3)}.ACO.ZC4Y{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.C{random_alpha_string(3)}.ACO.ZC4Y{random_alpha_string(2)}.D{file_date}.T010203t",
-        f"P.F{random_alpha_string(3)}.ACO.ZC4Y{random_alpha_string(2)}.D{file_date}.T010203t",
+        f"P.A{random_alpha_string(3)}.ACO.ZC5Y{random_alpha_string(2)}.D{file_date}.T010203t",
+        f"P.A{random_alpha_string(3)}.ACO.ZC5R{random_alpha_string(2)}.D{file_date}.T010203t",
+        f"P.F{random_alpha_string(3)}.ACO.ZC5Y{random_alpha_string(2)}.D{file_date}.T010203t",
+        f"P.F{random_alpha_string(3)}.ACO.ZC5R{random_alpha_string(2)}.D{file_date}.T010203t",
+        f"P.D{random_alpha_string(3)}.ACO.ZC5Y{random_alpha_string(2)}.D{file_date}.T010203t",
+        f"P.D{random_alpha_string(3)}.ACO.ZC5Y{random_alpha_string(2)}.D{file_date}.T010203t",
+        f"P.K{random_alpha_string(3)}.ACO.ZC5Y{random_alpha_string(2)}.D{file_date}.T010203t",
+        f"P.C{random_alpha_string(3)}.ACO.ZC5Y{random_alpha_string(2)}.D{file_date}.T010203t",
+        f"P.F{random_alpha_string(3)}.ACO.ZC5Y{random_alpha_string(2)}.D{file_date}.T010203t",
     }
 
     for file in files:
