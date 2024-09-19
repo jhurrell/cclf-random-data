@@ -10,7 +10,7 @@ The PDF for this specification can be
 
 Each of the file types is generated using a Python script that generates random
 data based on the specifications provided in the IP. The scripts are located in
-the `scripts` directory and can be run from the command line using the following
+the current directory and can be run from the command line using the following
 commands:
 
 ```bash
@@ -19,9 +19,9 @@ python3 main.py
 
 This will generate fake CCLF files for each of the file types listed in the IP.
 
-The generated files are located in the `output` directory and have a filename
-that includes the date, time, and type of file. The filenames follow the
-formats: specified in the requirements.
+The generated files are located in the `cclf` directory and have a filename that
+includes the date, time, and type of file. The filenames follow the formats
+specified in the requirements.
 
 Each file contains random data based on the specifications provided in the IP.
 The scripts use Python's built-in random number generator to generate fake data
