@@ -1,6 +1,5 @@
 # utils.py
 import os
-import shutil
 import random
 import string
 from datetime import timedelta
@@ -116,7 +115,7 @@ def generate_files(type, date, contents):
         "CCLF8": "Beneficiary Demographics File.", 
         "CCLF9": "BENE XREF File.", 
         "CCLFA": "Part A BE and Demo Codes File.", 
-        "CCLFB": "“Part B BE and Demo Codes File.", 
+        "CCLFB": "Part B BE and Demo Codes File.", 
     }
     name = name_map[type]              
 
