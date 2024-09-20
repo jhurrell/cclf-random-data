@@ -237,6 +237,14 @@ def rint():
 def pstc():
     return pstc_get_codes()
 
+def ynb():
+    return random.choice(["Y", "N", " "])
+
+def twobyte():
+    return f"{random.randint(0, 255):02X}"
+
+
+
 def random_date(start_date, end_date):
     time_between_dates = end_date - start_date
     random_days = random.randint(0, time_between_dates.days)
@@ -300,14 +308,14 @@ def generate_files(type, date, contents):
     # Define the filename patterns for the main types.
     primary_file_patterns = {
         f"P.A{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        f"P.A{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
-        f"P.F{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        f"P.F{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
-        f"P.D{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        f"P.D{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
-        f"P.K{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        f"P.C{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        f"P.P{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        # f"P.A{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
+        # f"P.F{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        # f"P.F{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
+        # f"P.D{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        # f"P.D{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
+        # f"P.K{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        # f"P.C{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        # f"P.P{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
     }
 
     # Define the path for the files.
@@ -321,6 +329,7 @@ def generate_files(type, date, contents):
         with open(f"{directory}/{file}", "w") as f:
             f.write(contents)  
 
+    return
     # Define the filename patterns for the Summary Statistics.
     summary_file_patterns = {
         f"P.A{rand_a}.ACO.ZC0Y{rand_b}.D{date}.T010203t",
