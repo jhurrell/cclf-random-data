@@ -50,3 +50,4 @@ for each field in the file.
 [Line Primary Payer Code (if not Medicare)](https://resdac.org/cms-data/variables/line-primary-payer-code-if-not-medicare)
 [Carrier Claim Payment Denial Code](https://resdac.org/cms-data/variables/carrier-claim-payment-denial-code)
 [Line Processing Indicator Code](https://resdac.org/cms-data/variables/line-processing-indicator-code)
+[Beneficiary Dual Status Code](https://resdac.org/cms-data/variables/edual1-12)

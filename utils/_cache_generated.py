@@ -1,9 +1,9 @@
-from datetime import timedelta
+from datetime import date, timedelta
 import os
 import pickle
 import random
 from faker import Faker
-from utils import psc
+from utils import psc, brc
 
 fake = Faker()
 
@@ -38,21 +38,35 @@ def cache_all(number_of_beneficiaries, number_of_claims, number_of_providers):
 
 # Cache the results of the generate_mbis function to improve performance and to
 # support sharing the same generated MBIs across multiple calls to the function.
+today = date.today()
 def generate_beneficiaries(quantity):
     for _ in range(quantity):
 
+        dob = fake.date_of_birth(minimum_age=55, maximum_age=105)
+        dod = fake.date_of_birth(minimum_age=1, maximum_age=15)
+        age = today.year - dob.year
+        
         person = {
             "mbi": random_mbi(),
             "hic": "",
 
             "firstName": fake.first_name(),
+            "middleName": fake.first_name(),
             "lastName": fake.last_name(),
             "gender": random.choice(["0", "1", "U"]),
-            "dateOfBirth": fake.date_of_birth(minimum_age=55, maximum_age=105),
+            "dob": dob.strftime("%Y-%m-%d"),
+            "dod": dod.strftime("%Y-%m-%d"),
+            "age": str(age),
+            "race": random.choice(brc()),
             
             "address1": fake.street_address(),
             "address2": fake.secondary_address(),
+            "address3": fake.secondary_address(),
+            "address4": fake.secondary_address(),
+            "address5": fake.secondary_address(),
+            "address6": fake.secondary_address(),
             "city": fake.city(),
+            "county": fake.country()[:3].upper(),
             "state": fake.state_abbr(),
             "zipCode": fake.postcode(),
             "plus4": fake.postalcode_plus4()[-4:]
@@ -95,10 +109,12 @@ def generate_providers(quantity):
             "oscar": "".join(random.choices("0123456789", k=6)),    # OSCAR/CCN
             "psc": random.choice(psc()),
             "ein": fake.ein(),
+            
             "firstName": fake.first_name(),
+            "middleName": fake.first_name(),
             "lastName": fake.last_name(),
             "gender": random.choice(["0", "1", "U"]),
-            "dateOfBirth": fake.date_of_birth(minimum_age=55, maximum_age=105),
+            "dob": fake.date_of_birth(minimum_age=55, maximum_age=105),
 
             "address1": fake.street_address(),
             "address2": fake.secondary_address(),

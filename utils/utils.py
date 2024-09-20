@@ -8,6 +8,11 @@ import shutil
 from faker import Faker
 from datetime import timedelta
 
+from beneficiary_dual_status_code import get_codes as bdsc_get_codes
+from beneficiary_entitlement_buy_in_indicator import get_codes as bebi_get_codes
+from beneficiary_medicare_status_code import get_codes as bmcsc_get_codes
+from beneficiary_original_entitlement_reason_code import get_codes as beorcc_get_codes
+from beneficiary_race_code import get_codes as brc_get_codes
 from carrier_payment_denial_code import get_codes as cpd_get_codes
 from claim_adjustment_type_code import get_codes as catc_get_codes
 from claim_admission_type_code  import get_codes as actc_get_codes
@@ -86,6 +91,21 @@ def get_providers():
         
     return {}   
 
+
+def bdsc():
+    return bdsc_get_codes()
+
+def bebi():
+    return bebi_get_codes()
+
+def bmsc():
+    return bmcsc_get_codes()
+
+def beorcc():
+    return beorcc_get_codes()
+
+def brc():
+    return brc_get_codes()
 
 # Claim Admission Type Codes
 def atc():
