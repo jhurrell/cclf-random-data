@@ -12,7 +12,6 @@ from utils import dol, generate_files
 from utils import get_claims, get_beneficiaries, get_providers
 from utils import ctc, rpt, tsc, pos, hcpcs, ppc, icd, cpd, pic, cat, flt, hcpcsm, cdc, tsc
 
-
 # Capture arguments or default if not provided.
 if len(sys.argv) == 2:
     # Capture arguments and convert them
@@ -22,7 +21,6 @@ if len(sys.argv) == 2:
         sys.exit(1)  # Exit with error code    
 else:
     number_of_file_months = 1
-
 
 # Prepare data structures for lookups.
 clm = get_claims()

@@ -8,9 +8,11 @@ import shutil
 from faker import Faker
 from datetime import timedelta
 
+from carrier_payment_denial_code import get_codes as cpd_get_codes
 from claim_adjustment_type_code import get_codes as catc_get_codes
 from claim_admission_type_code  import get_codes as actc_get_codes
 from claim_bill_facility_type_code import get_codes as cbfc_get_codes
+from claim_disposition_code import get_codes as cdc_get_codes
 from claim_frequency_code import get_codes as cfc_get_codes
 from claim_outpatient_service_type_code import get_codes as cosc_get_codes
 from claim_product_type_code import get_codes as ptc_get_codes
@@ -29,15 +31,13 @@ from icd import get_codes as icd_get_codes
 from nhc_primary_payer_code import get_codes as nhc_get_codes
 from place_of_service_code import get_codes as pos_get_codes
 from present_on_admission import get_codes as poa_get_codes
+from primary_payer_code import get_codes as ppc_get_codes
+from processing_indicator_code import get_codes as pic_get_codes
 from provider_specialty_code import get_codes as psc_get_codes
 from reason_payment_code import get_codes as rpc_get_codes
 from rendering_provider_type_code import get_codes as rptc_get_codes
 from revenue_code_ffs import get_codes as revo_get_codes
 from type_service_code import get_codes as tsc_get_codes
-from primary_payer_code import get_codes as ppc_get_codes
-from carrier_payment_denial_code import get_codes as cpd_get_codes
-from processing_indicator_code import get_codes as pic_get_codes
-from claim_disposition_code import get_codes as cdc_get_codes
 
 fake = Faker()
 

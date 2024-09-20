@@ -40,7 +40,7 @@ scripts = [
     "./cclf_generators/cclf_2.py", 
     "./cclf_generators/cclf_3.py", 
     "./cclf_generators/cclf_4.py", 
-    #"./cclf_generators/cclf_5.py", 
+    "./cclf_generators/cclf_5.py", 
     # "./cclf_generators/cclf_6.py", 
     # "./cclf_generators/cclf_7.py", 
     # "./cclf_generators/cclf_8.py", 

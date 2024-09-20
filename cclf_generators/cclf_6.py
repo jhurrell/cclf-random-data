@@ -1,62 +1,75 @@
 # cclf_6.py
+import random
 import sys
-sys.path.append("./utils/")
-from utils import generate_files, random_int_by_len, random_alpha_string, random_choice_from_array, random_date, random_float_in_range, random_alphanum_string
+import sys
 from datetime import datetime, timedelta
+from faker import Faker
+fake = Faker()
+
+# Add the path of the folder where the module is located
+sys.path.append("./utils/")
+from utils import dol, generate_files
+from utils import get_claims, get_beneficiaries, get_providers
+from utils import ctc, rpt, tsc, pos, hcpcs, ppc, icd, cpd, pic, cat, flt, hcpcsm, cdc, tsc
 
 # Capture arguments or default if not provided.
-if len(sys.argv) == 3:
+if len(sys.argv) == 2:
     # Capture arguments and convert them
     try:
         number_of_file_months = int(sys.argv[1])
-        number_of_lines_per_file = int(sys.argv[2])
     except ValueError as e:
         sys.exit(1)  # Exit with error code    
 else:
     number_of_file_months = 1
-    number_of_lines_per_file = 1000
 
+# Prepare data structures for lookups.
+clm = get_claims()
+bene = get_beneficiaries()  
+prov = get_providers()
 
 # Create n days worth of files.
 for month in range(number_of_file_months):
     # Initialize.
-    delta = timedelta(days=month*30)
+    delta = timedelta(days=month * 30)
     file_date = (datetime(2024, 1, 1) + delta).strftime("%y%m%d")
     contents = ""
 
-    for _ in range(number_of_lines_per_file):
+    for claim in clm:
+
+        pr = random.choice(prov)
+
         # 1-10
-        contents += random_int_by_len(13)     # CUR_CLM_UNIQ_ID
-        contents += random_int_by_len(10)     # CLM_LINE_NUM
-        contents += random_alpha_string(11)   # BENE_MBI_ID
-        contents += random_alpha_string(11)   # BENE_HIC_NUM
-        contents += random_choice_from_array(["81", "82"])   # CLM_TYPE_CD
-        contents += random_date(datetime(2024, 1, 1), datetime(2024, 12, 31)) # CLM_FROM_DT
-        contents += random_date(datetime(2024, 1, 1), datetime(2024, 12, 31)) # CLM_THRU_DT
-        contents += random_alpha_string(1)   # CLM_FED_TYPE_SRVC_CD
-        contents += random_alpha_string(2)   # CLM_POS_CD
-        contents += random_date(datetime(2024, 1, 1), datetime(2024, 12, 31)) # CLM_LINE_FROM_DT
+        contents += claim["num"].ljust(13)          # CUR_CLM_UNIQ_ID
+        contents += claim["ln"].rjust(10)           # CLM_LINE_NUM
+        contents += claim["mbi"]                    # BENE_MBI_ID
+        contents += "".ljust(11)                    # BENE_HIC_NUM
+        contents += random.choice(ctc()).ljust(2)   # CLM_TYPE_CD
+        contents += claim["from_dt"]                # CLM_FROM_DT
+        contents += claim["thru_dt"]                # CLM_THRU_DT
+        contents += random.choice(tsc())            # CLM_FED_TYPE_SRVC_CD
+        contents += random.choice(pos())            # CLM_POS_CD
+        contents += claim["from_dt"]                # CLM_LINE_FROM_DT
 
-        #11-20
-        contents += random_date(datetime(2024, 1, 1), datetime(2024, 12, 31)) # CLM_LINE_THRU_DT
-        contents += random_alpha_string(5)      # CLM_LINE_HCPCS_CD
-        contents += random_float_in_range(-9999.99, 9999.99, 15)  # CLM_LINE_CVRD_PD_AMT
-        contents += random_alpha_string(1)    # CLM_PRMRY_PYR_CD
-        contents += random_alpha_string(10)   # PAYTO_PRVDR_NPI_NUM
-        contents += random_alpha_string(10)   # ORDRG_PRVDR_NPI_NUM
-        contents += random_choice_from_array(["G", "H", "J", "T", "X", "Y"]).rjust(2) # CLM_CARR_PMT_DNL_CD
-        contents += random_choice_from_array(["G", "H", "J", "19", "41"]).rjust(2)    # CLM_PRCSG_IND_CD
-        contents += random_choice_from_array(["0", "1", "2"]).rjust(2)                # CLM_ADJSMT_TYPE_CD
-        contents += random_date(datetime(2024, 1, 1), datetime(2024, 12, 31))         # CLM_EFCTV_DT
-
+        # 11-20
+        contents += claim["thru_dt"]                # CLM_LINE_THRU_DT   
+        contents += random.choice(hcpcs())          # CLM_LINE_HCPCS_CD
+        contents += str(dol()).rjust(15)            # CLM_LINE_CVRD_PD_AMT
+        contents += random.choice(ppc()).ljust(1)   # CLM_PRMRY_PYR_CD
+        contents += pr["npi"]                       # PAYTO_PRVDR_NPI_NUM
+        contents += pr["npi"]                       # ORDRG_PRVDR_NPI_NUM
+        contents += random.choice(cpd()).ljust(2)   # CLM_CARR_PMT_DNL_CD
+        contents += random.choice(pic()).ljust(2)   # CLM_PRCSG_IND_CD
+        contents += random.choice(cat()).ljust(2)   # CLM_ADJSMT_TYPE_CD
+        contents += claim["from_dt"]                # CLM_EFCTV_DT
+        
         # 21-27
-        contents += random_date(datetime(2024, 1, 1), datetime(2024, 12, 31))         # CLM_IDR_LD_DT
-        contents += random_alphanum_string(40)    #  CLM_CNTL_NUM
-        contents += random_alpha_string(11)       # BENE_EQTBL_BIC_HICN_NUM
-        contents += random_float_in_range(-9999.99, 9999.99, 17)  # CLM_LINE_ALOWD_CHRG_AMT
-        contents += random_choice_from_array(["01", "02", "03"])  # CLM_DISP_CD
-        contents += random_alpha_string(10)   # CLM_BLG_PRVDR_NPI_NUM
-        contents += random_alpha_string(10)   # CLM_RFRG_PRVDR_NPI_NUM
+        contents += claim["thru_dt"]                # CLM_IDR_LD_DT
+        contents += claim["ccn"].rjust(40)          # CLM_CNTL_NUM
+        contents += "".ljust(11)                    # BENE_EQTBL_BIC_HICN_NUM
+        contents += str(dol()).rjust(17)            # CLM_LINE_ALOWD_CHRG_AMT
+        contents += random.choice(cdc()).ljust(2)   # CLM_DISP_CD
+        contents += pr["npi"]                       # CLM_BLG_PRVDR_NPI_NUM
+        contents += pr["npi"]                       # CLM_RFRG_PRVDR_NPI_NUM
 
         contents += "\n"
 

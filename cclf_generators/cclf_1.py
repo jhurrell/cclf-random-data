@@ -22,7 +22,6 @@ if len(sys.argv) == 2:
 else:
     number_of_file_months = 1
 
-
 # Prepare data structures for lookups.
 clm = get_claims()
 bene = get_beneficiaries()  
