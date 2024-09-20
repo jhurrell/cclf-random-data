@@ -23,7 +23,7 @@ else:
     number_of_file_months = 1
 
 # Prepare data structures for lookups.
-bene = get_beneficiaries()  
+beneficiaries = get_beneficiaries()  
 
 # Create n days worth of files.
 for month in range(number_of_file_months):
@@ -32,11 +32,11 @@ for month in range(number_of_file_months):
     file_date = (datetime(2024, 1, 1) + delta).strftime("%y%m%d")
     contents = ""
 
-    for b in bene:
+    for bene in beneficiaries:
         # 1-6
         contents += "M"             # HICN_MBI_XREF_IND
-        contents += b["mbi"]        # CRNT_NUM
-        contents += b["mbi"]        # PRVS_NUM
+        contents += bene["mbi"]     # CRNT_NUM
+        contents += bene["mbi"]     # PRVS_NUM
         contents += dt()            # PRVS_ID_EFCTV_DT
         contents += dt()            # PRVS_ID_OBSLT_DT
         contents += "".ljust(12)    # BENE_RRB_NUM

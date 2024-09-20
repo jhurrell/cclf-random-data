@@ -9,7 +9,7 @@ fake = Faker()
 # Add the path of the folder where the module is located
 sys.path.append("./utils/")
 from utils import dol, generate_files
-from utils import get_claims, get_beneficiaries, get_providers
+from utils import get_claims, get_bene, get_prov
 from utils import ctc, tsc, pos, hcpcs, ppc, cpd, pic, cat, cdc, tsc
 
 # Capture arguments or default if not provided.
@@ -23,9 +23,7 @@ else:
     number_of_file_months = 1
 
 # Prepare data structures for lookups.
-clm = get_claims()
-bene = get_beneficiaries()  
-prov = get_providers()
+claims = get_claims()
 
 # Create n days worth of files.
 for month in range(number_of_file_months):
@@ -34,9 +32,11 @@ for month in range(number_of_file_months):
     file_date = (datetime(2024, 1, 1) + delta).strftime("%y%m%d")
     contents = ""
 
-    for claim in clm:
+    for claim in claims:
 
-        pr = random.choice(prov)
+        # Get the beneficiary and NPI provider.
+        bene = get_bene(claim["mbi"])
+        prov = get_prov(claim["npi"])
 
         # 1-10
         contents += claim["num"].ljust(13)          # CUR_CLM_UNIQ_ID
@@ -55,8 +55,8 @@ for month in range(number_of_file_months):
         contents += random.choice(hcpcs())          # CLM_LINE_HCPCS_CD
         contents += str(dol()).rjust(15)            # CLM_LINE_CVRD_PD_AMT
         contents += random.choice(ppc()).ljust(1)   # CLM_PRMRY_PYR_CD
-        contents += pr["npi"]                       # PAYTO_PRVDR_NPI_NUM
-        contents += pr["npi"]                       # ORDRG_PRVDR_NPI_NUM
+        contents += prov["npi"]                     # PAYTO_PRVDR_NPI_NUM
+        contents += prov["npi"]                     # ORDRG_PRVDR_NPI_NUM
         contents += random.choice(cpd()).ljust(2)   # CLM_CARR_PMT_DNL_CD
         contents += random.choice(pic()).ljust(2)   # CLM_PRCSG_IND_CD
         contents += random.choice(cat()).ljust(2)   # CLM_ADJSMT_TYPE_CD
@@ -68,8 +68,8 @@ for month in range(number_of_file_months):
         contents += "".ljust(11)                    # BENE_EQTBL_BIC_HICN_NUM
         contents += str(dol()).rjust(17)            # CLM_LINE_ALOWD_CHRG_AMT
         contents += random.choice(cdc()).ljust(2)   # CLM_DISP_CD
-        contents += pr["npi"]                       # CLM_BLG_PRVDR_NPI_NUM
-        contents += pr["npi"]                       # CLM_RFRG_PRVDR_NPI_NUM
+        contents += prov["npi"]                     # CLM_BLG_PRVDR_NPI_NUM
+        contents += prov["npi"]                     # CLM_RFRG_PRVDR_NPI_NUM
 
         contents += "\n"
 

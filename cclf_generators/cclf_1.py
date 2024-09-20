@@ -9,7 +9,7 @@ fake = Faker()
 # Add the path of the folder where the module is located
 sys.path.append("./utils/")
 from utils import generate_files, dol
-from utils import get_claims, get_beneficiaries, get_providers
+from utils import get_claims, get_bene, get_prov
 from utils import icd, ctc, nprc, cbfc, csc, nhc, ffs, drg, cosc, cat, atc, csaic, cfc, cqc, dt
 
 # Capture arguments or default if not provided.
@@ -23,9 +23,7 @@ else:
     number_of_file_months = 1
 
 # Prepare data structures for lookups.
-clm = get_claims()
-bene = get_beneficiaries()  
-prov = get_providers()
+claims = get_claims()
 
 # Create n days worth of files.
 for month in range(number_of_file_months):
@@ -34,15 +32,15 @@ for month in range(number_of_file_months):
     file_date = (datetime(2024, 1, 1) + delta).strftime("%y%m%d")
     contents = ""
 
-    for claim in clm:
-        # Get a random memeficiary and provider.
-        beneficiary = random.choice(bene)
-        provider = random.choice(prov)
+    for claim in claims:
+        # Get the beneficiary and NPI provider.
+        bene = get_bene(claim["mbi"])
+        prov = get_prov(claim["npi"])
 
         # 1-10
         contents += claim["num"].ljust(13)              # CUR_CLM_UNIQ_ID
-        contents += beneficiary["mbi"]                  # BENE_MBI_ID
-        contents += beneficiary["hic"].ljust(11)        # BENE_HIC_NUM
+        contents += bene["mbi"]                         # BENE_MBI_ID
+        contents += bene["hic"].ljust(11)               # BENE_HIC_NUM
         contents += random.choice(ctc()).ljust(2)       # CLM_TYPE_CD
         contents += dt()                                # CLM_FROM_DT
         contents += dt()                                # CLM_THRU_DT
@@ -59,16 +57,16 @@ for month in range(number_of_file_months):
         contents += random.choice(ffs()).ljust(2)       # BENE_PTNT_STUS_CD 
         contents += random.choice(drg()).ljust(4)       # DGNS_DRG_CD
         contents += random.choice(cosc())               # CLM_OP_SRVC_TYPE_CD
-        contents += random.choice(prov)["npi"]          # FAC_PRVDR_NPI_NUM
-        contents += random.choice(prov)["npi"]          # OPRTG_PRVDR_NPI_NUM
+        contents += prov["npi"]                         # FAC_PRVDR_NPI_NUM
+        contents += prov["npi"]                         # OPRTG_PRVDR_NPI_NUM
 
         # 21-30
-        contents += random.choice(prov)["npi"]          # ATNDG_PRVDR_NPI_NUM
-        contents += random.choice(prov)["npi"]          # OTHR_PRVDR_NPI_NUM
+        contents += prov["npi"]                         # ATNDG_PRVDR_NPI_NUM
+        contents += prov["npi"]                         # OTHR_PRVDR_NPI_NUM
         contents += random.choice(cat()).rjust(2)       # CLM_ADJSMT_TYPE_CD
         contents += dt()                                # CLM_EFCTV_DT
         contents += dt()                                # CLM_IDR_LD_DT
-        contents += beneficiary["hic"].ljust(11)        # BENE_EQTBL_BIC_HICN_NUM
+        contents += bene["hic"].ljust(11)               # BENE_EQTBL_BIC_HICN_NUM
         contents += random.choice(atc()).rjust(2)       # CLM_ADMSN_TYPE_CD   
         contents += random.choice(csaic()).rjust(2)     # CLM_ADMSN_SRC_CD
         contents += random.choice(cfc())                # CLM_BILL_FREQ_CD
@@ -82,13 +80,13 @@ for month in range(number_of_file_months):
         contents += dol().rjust(15)                     # CLM_MDCR_IP_PPS_DSPRPRTNT_AMT
         contents += dol().rjust(15)                     # CLM_HIPPS_UNCOMPD_CARE_AMT
         contents += dol().rjust(22)                     # CLM_OPRTNL_DSPRPRTNT_AMT
-        contents += provider["oscar"].ljust(20)         # CLM_BLG_PRVDR_OSCAR_NUM
-        contents += random.choice(prov)["fnpi"]         # CLM_BLG_PRVDR_NPI_NUM
-        contents += random.choice(prov)["npi"]          # CLM_OPRTG_PRVDR_NPI_NUM
+        contents += prov["oscar"].ljust(20)             # CLM_BLG_PRVDR_OSCAR_NUM
+        contents += prov["fnpi"]                        # CLM_BLG_PRVDR_NPI_NUM
+        contents += prov["npi"]                         # CLM_OPRTG_PRVDR_NPI_NUM
 
         # 41-45
-        contents += random.choice(prov)["npi"]          # CLM_ATNDG_PRVDR_NPI_NUM
-        contents += random.choice(prov)["npi"]          # CLM_OTHR_PRVDR_NPI_NUM
+        contents += prov["npi"]                         # CLM_ATNDG_PRVDR_NPI_NUM
+        contents += prov["npi"]                         # CLM_OTHR_PRVDR_NPI_NUM
         contents += claim["ccn"].rjust(40)              # CLM_CNTL_NUM
         contents += claim["ocn"].rjust(40)              # CLM_ORG_CNTL_NUM
         contents += claim["mac"]                        # CLM_ORG_CNTL_NUM

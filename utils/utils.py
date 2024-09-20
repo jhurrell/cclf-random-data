@@ -2,7 +2,6 @@
 from functools import lru_cache
 import os
 import random
-import string
 import pickle
 import shutil
 
@@ -259,45 +258,6 @@ def ynb():
 def twobyte():
     return f"{random.randint(0, 255):02X}"
 
-
-
-def random_date(start_date, end_date):
-    time_between_dates = end_date - start_date
-    random_days = random.randint(0, time_between_dates.days)
-    random_date = start_date + timedelta(days=random_days)
-    return random_date.strftime("%Y-%m-%d")
-
-def random_alpha_string(length):
-    characters = string.ascii_letters
-    return ''.join(random.choices(characters, k=length)).upper()
-
-def random_num_string(length):
-    characters = string.digits
-    return ''.join(random.choices(characters, k=length))
-
-def random_alphanum_string(length):
-    characters = string.ascii_letters + string.digits
-    return ''.join(random.choices(characters, k=length)).upper()
-
-def random_int_in_range(min_value, max_value):
-    return str(random.randint(min_value, max_value))
-
-def random_int_by_len(length):
-    characters = string.digits
-    return ''.join(random.choices(characters, k=length))
-
-# Random float between a and b
-def random_float_in_range(a, b, length):
-    # Generate a random float between a and b
-    random_float = random.uniform(a, b)
-    # Randomly decide whether to make it positive or negative
-    sign = random.choice([-1, 1])
-    # Apply the sign and round to 2 decimal places
-    return str(round(random_float * sign, 2)).ljust(length)    
-
-def random_choice_from_array(arr):
-    return random.choice(arr)
-
 def generate_files(type, date, contents):
     print(f"{type} for {date} processing...")
 
@@ -318,20 +278,20 @@ def generate_files(type, date, contents):
     sfx = suffix_map[type]
 
     # Generate random characters to fill the filenames.
-    rand_a = random_alpha_string(3)
-    rand_b = random_alpha_string(2)
+    rand_a = fake.pystr(min_chars=3, max_chars=3)
+    rand_b = fake.pystr(min_chars=2, max_chars=2)
 
     # Define the filename patterns for the main types.
     primary_file_patterns = {
         f"P.A{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        # f"P.A{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
-        # f"P.F{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        # f"P.F{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
-        # f"P.D{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        # f"P.D{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
-        # f"P.K{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        # f"P.C{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        # f"P.P{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        f"P.A{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
+        f"P.F{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        f"P.F{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
+        f"P.D{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        f"P.D{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
+        f"P.K{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        f"P.C{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        f"P.P{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
     }
 
     # Define the path for the files.
@@ -345,7 +305,6 @@ def generate_files(type, date, contents):
         with open(f"{directory}/{file}", "w") as f:
             f.write(contents)  
 
-    return
     # Define the filename patterns for the Summary Statistics.
     summary_file_patterns = {
         f"P.A{rand_a}.ACO.ZC0Y{rand_b}.D{date}.T010203t",

@@ -9,7 +9,7 @@ fake = Faker()
 # Add the path of the folder where the module is located
 sys.path.append("./utils/")
 from utils import dol, generate_files
-from utils import get_claims, get_beneficiaries, get_providers
+from utils import get_claims
 from utils import ctc, ynb, twobyte, cat
 
 # Capture arguments or default if not provided.
@@ -23,9 +23,7 @@ else:
     number_of_file_months = 1
 
 # Prepare data structures for lookups.
-clm = get_claims()
-bene = get_beneficiaries()  
-prov = get_providers()
+claims = get_claims()
 
 # Create n days worth of files.
 for month in range(number_of_file_months):
@@ -34,7 +32,7 @@ for month in range(number_of_file_months):
     file_date = (datetime(2024, 1, 1) + delta).strftime("%y%m%d")
     contents = ""
 
-    for claim in clm:
+    for claim in claims:
         # 1-10
         contents += claim["num"].ljust(13)          # CUR_CLM_UNIQ_ID
         contents += claim["mbi"]                    # BENE_MBI_ID

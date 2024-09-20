@@ -9,7 +9,7 @@ fake = Faker()
 # Add the path of the folder where the module is located
 sys.path.append("./utils/")
 from utils import generate_files
-from utils import get_claims, get_beneficiaries, get_providers
+from utils import get_claims, get_bene, get_prov
 from utils import ctc, icd
 
 # Capture arguments or default if not provided.
@@ -23,9 +23,7 @@ else:
     number_of_file_months = 1
 
 # Prepare data structures for lookups.
-clm = get_claims()
-bene = get_beneficiaries()  
-prov = get_providers()
+claims = get_claims()
 
 # Create n days worth of files.
 for month in range(number_of_file_months):
@@ -34,8 +32,10 @@ for month in range(number_of_file_months):
     file_date = (datetime(2024, 1, 1) + delta).strftime("%y%m%d")
     contents = ""
 
-    for claim in clm:
-        pr = random.choice(prov)
+    for claim in claims:
+        # Get the beneficiary and NPI provider.
+        bene = get_bene(claim["mbi"])
+        prov = get_prov(claim["npi"])
         diag = random.choice(icd())
 
         # 1-10
@@ -47,13 +47,13 @@ for month in range(number_of_file_months):
         contents += diag["code"].rjust(7)           # CLM_PRCDR_CD
         contents += claim["from_dt"]                # CLM_PRCDR_PRFRM_DT
         contents += "".ljust(11)                    # BENE_EQTBL_BIC_HICN_NUM
-        contents += pr["oscar"].ljust(6)            # PRVDR_OSCAR_NUM
+        contents += prov["oscar"].ljust(6)          # PRVDR_OSCAR_NUM
         contents += claim["from_dt"]                # CLM_FROM_DT
 
         # 11-13
         contents += claim["thru_dt"]                # CLM_THRU_DT   
         contents += diag["ver"]                     # DGNS_PRCDR_ICD_IND
-        contents += pr["fnpi"].rjust(20)            # CLM_BLG_PRVDR_OSCAR_NUM
+        contents += prov["fnpi"].rjust(20)          # CLM_BLG_PRVDR_OSCAR_NUM
 
         contents += "\n"
 
