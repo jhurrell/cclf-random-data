@@ -1,7 +1,7 @@
-from datetime import date, timedelta
 import os
 import pickle
 import random
+from datetime import date, timedelta
 from faker import Faker
 from utils import psc, brc
 
