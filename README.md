@@ -17,17 +17,18 @@ commands:
 python3 main.py
 ```
 
-This will generate fake CCLF files for each of the file types listed in the IP.
+This will generate fake CCLF files for each of the file types listed in the PDF.
 
-The generated files are located in the `output` directory and have a filename
-that includes the date, time, and type of file. The filenames follow the formats
-specified in the requirements.
+The generated files will be written to the `_output` directory and have a
+filename that includes the date, time, and type of file. The filenames follow
+the formats specified in the requirements.
 
-Each file contains random data based on the specifications provided in the IP.
-The scripts use Python's built-in random number generator to generate fake data
-for each field in the file. There is no intent to create realistic data, as this
-would require a significant amount of time and resources. Instead, the scripts
-generate random data that adheres to the specifications provided in the IP.
+Each file contains random data based on the specifications provided in the PDF.
+
+The scripts use [Faker](https://faker.readthedocs.io/en/master/) to produce
+pseudo-random data for fields such as dates and names. The Faker library is used
+to generate realistic looking data, but it does not guarantee that the data will
+be realistic or accurate in any way.
 
 ## Resources
 
