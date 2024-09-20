@@ -301,7 +301,7 @@ def generate_files(type, date, contents):
     for file in primary_file_patterns:
         print(f"\tCreating {type} {file}...")
         with open(f"{directory}/{file}", "w") as f:
-            f.write(contents)  
+            f.write(contents.rstrip())  
 
     # Define the filename patterns for the Summary Statistics.
     summary_file_patterns = {
