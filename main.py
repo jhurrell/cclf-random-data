@@ -1,4 +1,3 @@
-# script_a.py
 import subprocess
 import sys
 

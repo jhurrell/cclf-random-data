@@ -1,4 +1,3 @@
-# cclf_6.py
 import random
 import sys
 import sys
