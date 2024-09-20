@@ -1,37 +1,45 @@
 # cclf_9.py
+import random
 import sys
-sys.path.append("./utils/")
-from utils import generate_files, random_alpha_string, random_choice_from_array, random_date
+import sys
 from datetime import datetime, timedelta
+from faker import Faker
+fake = Faker()
+
+# Add the path of the folder where the module is located
+sys.path.append("./utils/")
+from utils import generate_files
+from utils import get_beneficiaries
+from utils import dt
 
 # Capture arguments or default if not provided.
-if len(sys.argv) == 3:
+if len(sys.argv) == 2:
     # Capture arguments and convert them
     try:
         number_of_file_months = int(sys.argv[1])
-        number_of_lines_per_file = int(sys.argv[2])
     except ValueError as e:
         sys.exit(1)  # Exit with error code    
 else:
     number_of_file_months = 1
-    number_of_lines_per_file = 1000
 
+# Prepare data structures for lookups.
+bene = get_beneficiaries()  
 
 # Create n days worth of files.
 for month in range(number_of_file_months):
     # Initialize.
-    delta = timedelta(days=month*30)
+    delta = timedelta(days=month * 30)
     file_date = (datetime(2024, 1, 1) + delta).strftime("%y%m%d")
     contents = ""
 
-    for _ in range(number_of_lines_per_file):
+    for b in bene:
         # 1-6
-        contents += random_choice_from_array(["X", " "])                              # HICN_MBI_XREF_IND
-        contents += random_alpha_string(11)                                           # CRNT_NUM
-        contents += random_alpha_string(11)                                           # PRVS_NUM
-        contents += random_date(datetime(1940, 1, 1), datetime(1970, 12, 31))         # PRVS_ID_EFCTV_DT
-        contents += random_date(datetime(1940, 1, 1), datetime(1970, 12, 31))         # PRVS_ID_OBSLT_DT
-        contents += random_alpha_string(12)                                           # BENE_RRB_NUM
+        contents += "M"             # HICN_MBI_XREF_IND
+        contents += b["mbi"]        # CRNT_NUM
+        contents += b["mbi"]        # PRVS_NUM
+        contents += dt()            # PRVS_ID_EFCTV_DT
+        contents += dt()            # PRVS_ID_OBSLT_DT
+        contents += "".ljust(12)    # BENE_RRB_NUM
 
         contents += "\n"
 
