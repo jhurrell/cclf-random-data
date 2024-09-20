@@ -1,4 +1,4 @@
-# Claim Frequency Code (FFS)
+# Claim Frequency Codes (FFS)
 # https://resdac.org/cms-data/variables/claim-frequency-code-ffs
 def get_codes():
     return [

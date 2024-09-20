@@ -1,4 +1,4 @@
-# Beneficiary Medicare Status Code
+# Beneficiary Medicare Status Codes
 # (from the PDF)
 def get_codes():
     return [

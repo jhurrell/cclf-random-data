@@ -1,4 +1,4 @@
-# Claim Dispensing Code
+# Claim Dispensing Codes
 # (from the PDF)
 def get_codes():
     return [

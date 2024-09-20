@@ -1,4 +1,5 @@
-# TODO
+# Patient Discharge Status Code (FFS)
+# https://resdac.org/cms-data/variables/patient-discharge-status-code-ffs
 def get_codes():
     return [
         "0",       # Unknown Value (but present in data)

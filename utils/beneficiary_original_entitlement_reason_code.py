@@ -1,4 +1,4 @@
-# Beneficiary Original Entitlement Reason Code
+# Beneficiary Original Entitlement Reason Codes
 # (from the PDF)
 def get_codes():
     return [

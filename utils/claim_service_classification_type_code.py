@@ -1,4 +1,4 @@
-# Claim Service Classification Type Code
+# Claim Service Classification Type Codes
 # https://resdac.org/sites/datadocumentation.resdac.org/files/Claim%20Service%20Classification%20Type%20Code%20Table.txt
 def get_codes():
     return [

@@ -1,4 +1,4 @@
-# Beneficiary Dual Status Code
+# Beneficiary Dual Status Codes
 # https://resdac.org/cms-data/variables/edual1-12
 def get_codes():
     return [

@@ -1,4 +1,4 @@
-# Beneficiary Race Code
+# Beneficiary Race Codes
 # (from the PDF)
 def get_codes():
     return [

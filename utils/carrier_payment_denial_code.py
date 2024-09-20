@@ -1,4 +1,4 @@
-# Carrier Claim Payment Denial Code
+# Carrier Claim Payment Denial Codes
 # https://resdac.org/cms-data/variables/carrier-claim-payment-denial-code
 def get_codes():
     return [

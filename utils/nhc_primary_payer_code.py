@@ -1,4 +1,5 @@
-# TODO
+# NCH Primary Payer Code (if not Medicare)
+# https://resdac.org/cms-data/variables/nch-primary-payer-code-if-not-medicare
 def get_codes():
     return [
         "A",    # Employer group health plan (EGHP) insurance for an aged beneficiary

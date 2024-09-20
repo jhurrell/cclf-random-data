@@ -1,4 +1,4 @@
-# Claim Disposition Code
+# Claim Disposition Codes
 # (from the PDF)
 def get_codes():
     return [

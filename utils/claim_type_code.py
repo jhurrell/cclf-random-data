@@ -1,4 +1,5 @@
-# TODO
+# Claim Type Codes
+# (from the PDF)
 def get_codes():
     return [
         "10",      # HHA claim

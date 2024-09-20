@@ -1,4 +1,4 @@
-# Claim Product Type Code
+# Claim Product Type Codes
 # (from the PDF)
 def get_codes():
     return [

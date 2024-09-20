@@ -1,4 +1,4 @@
-# Claim Adjustment Type Code
+# Claim Adjustment Type Codes
 # (from the PDF)
 def get_codes():
     return [

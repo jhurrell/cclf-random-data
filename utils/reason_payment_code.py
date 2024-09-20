@@ -1,4 +1,5 @@
-# TODO
+# Claim Medicare Non-Payment Reason Code
+# https://resdac.org/cms-data/variables/claim-medicare-non-payment-reason-code
 def get_codes():
     return [
         "A"       # Covered worker's compensation (Obsolete)

@@ -1,5 +1,5 @@
-# Claim Bill Facility Type Code
-# TODO
+# Claim Bill Facility Type Codes
+# (from the PDF)
 def get_codes():
     return [
         "1",      # Hospital

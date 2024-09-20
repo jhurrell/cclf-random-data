@@ -1,5 +1,5 @@
 # Sample CPT Modifiers
-# https://www.mdclarity.com/blog/hcpcs-codes#:~:text=HCPCS%20modifiers%20are%20two%20characters,without%20changing%20the%20code%20meanings.
+# https://www.mdclarity.com/blog/hcpcs-codes
 def get_codes():
     return [
         "25",   # The CPT-4 manual defines modifier 25 as a Significant, Separately Identifiable Evaluation and Management Service by the Same Physician on the Same Day of the Procedure or Other Service. Coders can use modifier 25 to indicate that the patient's condition requires a separately and significantly identifiable evaluation and management (E/M) service above and beyond the other service offered.

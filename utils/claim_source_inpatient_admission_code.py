@@ -1,4 +1,4 @@
-# Claim Source Inpatient Admission Code (FFS)
+# Claim Source Inpatient Admission Codes (FFS)
 # https://resdac.org/cms-data/variables/claim-source-inpatient-admission-code-ffs
 def get_codes():
     return [

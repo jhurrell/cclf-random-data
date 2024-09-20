@@ -1,3 +1,4 @@
+# Sample CPT Codes
 def get_codes():
     return [
         "32035",     # Thoracostomy; with rib resection for empyema

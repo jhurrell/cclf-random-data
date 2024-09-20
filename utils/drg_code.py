@@ -1,4 +1,4 @@
-# TODO
+# Indicates the diagnostic related group to which a hospital claim belongs for prospective payment purposes.
 # (from the PDF)
 def get_codes():
     return [
