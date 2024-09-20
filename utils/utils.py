@@ -211,7 +211,7 @@ def cdsc():
 def daw():
     return daw_get_codes()
 
-def int():
+def rint():
     return str(random.randint(1, 365))
 
 def pstc():

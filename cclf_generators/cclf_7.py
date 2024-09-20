@@ -10,7 +10,7 @@ fake = Faker()
 sys.path.append("./utils/")
 from utils import dol, generate_files
 from utils import get_claims, get_beneficiaries, get_providers
-from utils import ctc, cdsc, ndc, psiqc, daw, flt, int, cat, pstc
+from utils import ctc, cdsc, ndc, psiqc, daw, flt, rint, cat, pstc
 
 # Capture arguments or default if not provided.
 if len(sys.argv) == 2:
@@ -52,15 +52,15 @@ for month in range(number_of_file_months):
         
         # 11-20
         contents += flt().rjust(24)                 # CLM_LINE_SRVC_UNIT_QTY
-        contents += int().rjust(9)                  # CLM_LINE_DAYS_SUPLY_QTY
+        contents += rint().rjust(9)                  # CLM_LINE_DAYS_SUPLY_QTY
         contents += random.choice(psiqc())          # PRVDR_PRSBNG_ID_QLFYR_CD
         contents += pr["npi"].ljust(20)             # CLM_PRSBNG_PRVDR_GNRC_ID_NUM
         contents += dol().rjust(13)                 # CLM_LINE_BENE_PMT_AMT
         contents += random.choice(cat()).ljust(2)   # CLM_ADJSMT_TYPE_CD
         contents += claim["from_dt"]                # CLM_EFCTV_DT
         contents += claim["thru_dt"]                # CLM_IDR_LD_DT
-        contents += int().rjust(12)                 # CLM_LINE_RX_SRVC_RFRNC_NUM  
-        contents += int().rjust(9)                  # CLM_LINE_RX_FILL_NUM
+        contents += rint().rjust(12)                # CLM_LINE_RX_SRVC_RFRNC_NUM  
+        contents += rint().rjust(9)                 # CLM_LINE_RX_FILL_NUM
 
         # 21
         contents += random.choice(pstc()).ljust(2)  # CLM_PHRMCY_SRVC_TYPE_CD
