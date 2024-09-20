@@ -1,46 +1,61 @@
 # cclf_3.py
+import random
 import sys
-sys.path.append("./utils/")
-from utils import generate_files, random_int_by_len, random_alpha_string, random_choice_from_array, random_date
+import sys
 from datetime import datetime, timedelta
+from faker import Faker
+fake = Faker()
+
+# Add the path of the folder where the module is located
+sys.path.append("./utils/")
+from utils import generate_files, dol
+from utils import get_claims, get_beneficiaries, get_providers
+from utils import ctc, icd, revcd, dt, hcpcs, flt, hcpcsm, hipps, icd
+
 
 # Capture arguments or default if not provided.
 if len(sys.argv) == 3:
     # Capture arguments and convert them
     try:
         number_of_file_months = int(sys.argv[1])
-        number_of_lines_per_file = int(sys.argv[2])
     except ValueError as e:
         sys.exit(1)  # Exit with error code    
 else:
     number_of_file_months = 1
-    number_of_lines_per_file = 1000
 
+
+# Prepare data structures for lookups.
+clm = get_claims()
+bene = get_beneficiaries()  
+prov = get_providers()
 
 # Create n days worth of files.
 for month in range(number_of_file_months):
     # Initialize.
-    delta = timedelta(days=month*30)
+    delta = timedelta(days=month * 30)
     file_date = (datetime(2024, 1, 1) + delta).strftime("%y%m%d")
     contents = ""
 
-    for _ in range(number_of_lines_per_file):
+    for claim in clm:
+        pr = random.choice(prov)
+        diag = random.choice(icd())
+
         # 1-10
-        contents += random_int_by_len(13)     # CUR_CLM_UNIQ_ID
-        contents += random_alpha_string(11)   # BENE_MBI_ID
-        contents += random_alpha_string(11)   # BENE_HIC_NUM
-        contents += random_choice_from_array(["10", "20", "30", "40", "50", "60", "61"])   # CLM_TYPE_CD
-        contents += random_int_by_len(2)      # CLM_VAL_SQNC_NUM
-        contents += random_alpha_string(7)    # CLM_PRCDR_CD
-        contents += random_date(datetime(2024, 1, 1), datetime(2024, 12, 31)) # CLM_PRCDR_PRFRM_DT
-        contents += random_alpha_string(11)   # BENE_EQTBL_BIC_HICN_NUM
-        contents += random_int_by_len(6)      # PRVDR_OSCAR_NUM
-        contents += random_date(datetime(2024, 1, 1), datetime(2024, 12, 31)) # CLM_FROM_DT
+        contents += claim["num"].ljust(13)      # CUR_CLM_UNIQ_ID
+        contents += claim["mbi"]                # BENE_MBI_ID
+        contents += "".ljust(11)                # BENE_HIC_NUM
+        contents += random.choice(ctc()).rjust(2)       # CLM_TYPE_CD
+        contents += "1".rjust(2)                # CLM_VAL_SQNC_NUM
+        contents += diag["code"].rjust(7)       # CLM_PRCDR_CD
+        contents += claim["from_dt"]            # CLM_PRCDR_PRFRM_DT
+        contents += "".ljust(11)                # BENE_EQTBL_BIC_HICN_NUM
+        contents += pr["oscar"].ljust(6)        # PRVDR_OSCAR_NUM
+        contents += claim["from_dt"]            # CLM_FROM_DT
 
         # 11-13
-        contents += random_date(datetime(2024, 1, 1), datetime(2024, 12, 31)) # CLM_THRU_DT
-        contents += random_choice_from_array(["0", "9", "U"])   # DGNS_PRCDR_ICD_IND
-        contents += random_alpha_string(20)   # CLM_BLG_PRVDR_OSCAR_NUM
+        contents += claim["thru_dt"]            # CLM_THRU_DT   
+        contents += diag["ver"]                 # DGNS_PRCDR_ICD_IND
+        contents += pr["fnpi"].rjust(20)        # CLM_BLG_PRVDR_OSCAR_NUM
 
         contents += "\n"
 

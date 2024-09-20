@@ -72,12 +72,6 @@ def get_providers():
         
     return {}   
 
-def get_diagnoses():
-    if os.path.exists(f"{cache_path}/icd-10.pkl"):
-        with open(f"{cache_path}/icd-10.pkl", 'rb') as f:
-            return pickle.load(f)
-        
-    return {}  
 
 # Claim Admission Type Codes
 def atc():

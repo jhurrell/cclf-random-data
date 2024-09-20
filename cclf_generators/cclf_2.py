@@ -8,8 +8,8 @@ fake = Faker()
 
 # Add the path of the folder where the module is located
 sys.path.append("./utils/")
-from utils import generate_files, dol
-from utils import get_claims, get_beneficiaries, get_providers, get_diagnoses
+from utils import generate_files
+from utils import get_claims, get_beneficiaries, get_providers
 from utils import ctc, revcd, dt, hcpcs, flt, hcpcsm, hipps
 
 
@@ -28,7 +28,6 @@ else:
 clm = get_claims()
 bene = get_beneficiaries()  
 prov = get_providers()
-diag = get_diagnoses()
 
 # Create n days worth of files.
 for month in range(number_of_file_months):
