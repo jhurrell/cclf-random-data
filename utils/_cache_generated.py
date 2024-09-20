@@ -15,7 +15,7 @@ providers = {}
 claims = []
 
 
-def cache_all(number_of_beneficiaries, number_of_claims, number_of_providers):
+def cache_all(number_of_beneficiaries, number_of_providers, number_of_claims):
     print("Caching:")
     cache_beneficiaries(number_of_beneficiaries)
     cache_providers(number_of_providers)
@@ -104,19 +104,21 @@ def generate_providers(quantity):
 def generate_claims(quantity):
     pad_size = 1 + len(str(quantity))
 
-    for index in range(quantity):
+    for i_c in range(quantity):
 
         # Prepare the claim
-        nul = f"CN{str(index + 1).zfill(pad_size)}"
+        claim_number = i_c + 1
+        num = f"CN{str(claim_number).zfill(pad_size)}"
         cd = fake.date_this_year()
         bene = random.choice(list(beneficiaries.values()))
         prov = random.choice(list(providers.values()))
 
         # Generate between 1 and 5 claim lines.
-        for ln in range(1, random.randint(1, 5)):
+        for i_l in range(1, random.randint(1, 5)):
+            print(f"{num}")
             claim = {
-                "num": nul,
-                "ln": f"{ln}",
+                "num": num,
+                "ln": f"{i_l}",
                 "ccn": fake.numerify("A#######"),
                 "ocn": fake.numerify("B#######"),
                 "mac": fake.numerify("MC###"),

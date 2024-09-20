@@ -13,22 +13,21 @@ number_of_file_months = 1
 
 # Specifies the total population size of beneficiaries that can be randomly
 # chosen and used to generate files.
-number_of_beneficiaries = 100
-
-# Specifies the number of claims that will be generated.
-number_of_claims = 1000
+number_of_beneficiaries = 5
 
 # Specifies the total population size of beneficiaries that can be randomly
 # chosen and used to generate files.
-number_of_providers = 200
+number_of_providers = 3
+
+# Specifies the number of claims that will be generated.
+number_of_claims = 10
 
 
 # Clean up date from previous runs.
 purge_output_folder()
 
 # Prepare the caches.
-cache_all(number_of_beneficiaries, number_of_claims, number_of_providers)
-
+cache_all(number_of_beneficiaries, number_of_providers, number_of_claims)
 
 # Specifies the scripts that will be called each time main is executed.
 scripts = [
