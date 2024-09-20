@@ -45,7 +45,7 @@ be realistic or accurate in any way.
 - [Line Place Of Service Code (FFS)](https://resdac.org/cms-data/variables/line-place-service-code-ffs)
 - [Line Primary Payer Code (if not Medicare)](https://resdac.org/cms-data/variables/line-primary-payer-code-if-not-medicare)
 - [Line Processing Indicator Code](https://resdac.org/cms-data/variables/line-processing-indicator-code)
+- [NCH Primary Payer Code (if not Medicare)](https://resdac.org/cms-data/variables/nch-primary-payer-code-if-not-medicare)
 - [Patient Discharge Status Code (FFS)](https://resdac.org/cms-data/variables/patient-discharge-status-code-ffs)
 - [Revenue Center APC or HIPPS Code](https://resdac.org/cms-data/variables/revenue-center-apc-or-hipps-code)
 - [Revenue Center Code (FFS)](https://resdac.org/cms-data/variables/revenue-center-code-ffs)
-- [NCH Primary Payer Code (if not Medicare)](https://resdac.org/cms-data/variables/nch-primary-payer-code-if-not-medicare)
