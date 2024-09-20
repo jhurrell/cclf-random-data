@@ -28,6 +28,9 @@ from hcpcs_mod import get_codes as hcpcs_mod_get_codes
 from cpt import get_codes as cpt_get_codes
 from cpt_mod import get_codes as cpt_mod_get_codes
 from hipps import get_codes as hipps_get_codes
+from claim_product_type_code import get_codes as ptc_get_codes
+from present_on_admission import get_codes as poa_get_codes
+
 
 fake = Faker()
 
@@ -140,9 +143,14 @@ def cpt():
 def cptm():
     return cpt_mod_get_codes()
 
-
 def hipps():
     return hipps_get_codes()
+
+def cptc():
+    return ptc_get_codes()
+
+def poa():
+    return poa_get_codes()
 
 # Returns a date this year in the format YYYY-MM-DD.
 def dt():

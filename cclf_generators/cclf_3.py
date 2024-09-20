@@ -39,7 +39,6 @@ for month in range(number_of_file_months):
     for claim in clm:
         pr = random.choice(prov)
         diag = random.choice(icd())
-        c = ctc()
 
         # 1-10
         contents += claim["num"].ljust(13)      # CUR_CLM_UNIQ_ID
