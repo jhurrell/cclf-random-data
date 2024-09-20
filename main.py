@@ -32,17 +32,17 @@ cache_all(number_of_beneficiaries, number_of_providers, number_of_claims)
 
 # Specifies the scripts that will be called each time main is executed.
 scripts = [
-    "./cclf_generators/cclf_1.py", 
-    "./cclf_generators/cclf_2.py", 
-    "./cclf_generators/cclf_3.py", 
-    "./cclf_generators/cclf_4.py", 
-    "./cclf_generators/cclf_5.py", 
-    "./cclf_generators/cclf_6.py", 
-    "./cclf_generators/cclf_7.py", 
-    "./cclf_generators/cclf_8.py", 
-    "./cclf_generators/cclf_9.py", 
-    "./cclf_generators/cclf_a.py",
-    "./cclf_generators/cclf_b.py",
+    "./cclf_1.py", 
+    "./cclf_2.py", 
+    "./cclf_3.py", 
+    "./cclf_4.py", 
+    "./cclf_5.py", 
+    "./cclf_6.py", 
+    "./cclf_7.py", 
+    "./cclf_8.py", 
+    "./cclf_9.py", 
+    "./cclf_a.py",
+    "./cclf_b.py",
 ]
 
 # Convert the arguments to strins.
