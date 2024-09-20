@@ -26,32 +26,32 @@ for month in range(number_of_file_months):
 
     for _ in range(number_of_lines_per_file):
         # 1-10
-        contents = contents + random_int_by_len(13)     # CUR_CLM_UNIQ_ID
-        contents = contents + random_alpha_string(11)   # BENE_MBI_ID
-        contents = contents + random_alpha_string(11)   # BENE_HIC_NUM
-        contents = contents + random_num_string(11)     # CLM_LINE_NDC_CD
-        contents = contents + random_choice_from_array(["01", "02", "03", "04"])   # CLM_TYPE_CD
-        contents = contents + random_date(datetime(2024, 1, 1), datetime(2024, 12, 31)) # CLM_LINE_FROM_DT
-        contents = contents + random_choice_from_array(["01", "06", "07", "08", "11", "99"])   # PRVDR_SRVC_ID__QLFYR_CD
-        contents = contents + random_alpha_string(20)   # CLM_SRVC_PRVDR_GNRC_ID_NUM
-        contents = contents + random_choice_from_array(["P", "C"])   # CLM_DSPNSNG_STUS_CD
-        contents = contents + random_choice_from_array(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])   # CLM_DAW_PROD_SLCTN_CD
+        contents += random_int_by_len(13)     # CUR_CLM_UNIQ_ID
+        contents += random_alpha_string(11)   # BENE_MBI_ID
+        contents += random_alpha_string(11)   # BENE_HIC_NUM
+        contents += random_num_string(11)     # CLM_LINE_NDC_CD
+        contents += random_choice_from_array(["01", "02", "03", "04"])   # CLM_TYPE_CD
+        contents += random_date(datetime(2024, 1, 1), datetime(2024, 12, 31)) # CLM_LINE_FROM_DT
+        contents += random_choice_from_array(["01", "06", "07", "08", "11", "99"])   # PRVDR_SRVC_ID__QLFYR_CD
+        contents += random_alpha_string(20)   # CLM_SRVC_PRVDR_GNRC_ID_NUM
+        contents += random_choice_from_array(["P", "C"])   # CLM_DSPNSNG_STUS_CD
+        contents += random_choice_from_array(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])   # CLM_DAW_PROD_SLCTN_CD
 
         # 11-20
-        contents = contents + random_float_in_range(-9999.9999, 9999.9999, 24)  # CLM_LINE_SRVC_UNIT_QTY
-        contents = contents + random_num_string(9)     # CLM_LINE_DAYS_SUPLY_QTY
-        contents = contents + random_choice_from_array(["01", "06", "07", "08", "11", "12", "99"])   # PRVDR_PRSBNG_ID_QLFYR_CD
-        contents = contents + random_alpha_string(20)   # CLM_PRSBNG_PRVDR_GNRC_ID_NUM
-        contents = contents + random_float_in_range(-9999.99, 9999.99, 13)  # CLM_LINE_BENE_PMT_AMT
-        contents = contents + random_choice_from_array([" 0", " 1", " 2"])  # CLM_ADJSMT_TYPE_CD
-        contents = contents + random_date(datetime(2024, 1, 1), datetime(2024, 12, 31)) # CLM_EFCTV_DT
-        contents = contents + random_date(datetime(2024, 1, 1), datetime(2024, 12, 31)) # CLM_IDR_LD_DT
-        contents = contents + random_alphanum_string(12)    # CLM_LINE_RX_SRVC_RFRNC_NUM
-        contents = contents + random_alphanum_string(9)     # CLM_LINE_RX_FILL_NUM
+        contents += random_float_in_range(-9999.9999, 9999.9999, 24)  # CLM_LINE_SRVC_UNIT_QTY
+        contents += random_num_string(9)     # CLM_LINE_DAYS_SUPLY_QTY
+        contents += random_choice_from_array(["01", "06", "07", "08", "11", "12", "99"])   # PRVDR_PRSBNG_ID_QLFYR_CD
+        contents += random_alpha_string(20)   # CLM_PRSBNG_PRVDR_GNRC_ID_NUM
+        contents += random_float_in_range(-9999.99, 9999.99, 13)  # CLM_LINE_BENE_PMT_AMT
+        contents += random_choice_from_array([" 0", " 1", " 2"])  # CLM_ADJSMT_TYPE_CD
+        contents += random_date(datetime(2024, 1, 1), datetime(2024, 12, 31)) # CLM_EFCTV_DT
+        contents += random_date(datetime(2024, 1, 1), datetime(2024, 12, 31)) # CLM_IDR_LD_DT
+        contents += random_alphanum_string(12)    # CLM_LINE_RX_SRVC_RFRNC_NUM
+        contents += random_alphanum_string(9)     # CLM_LINE_RX_FILL_NUM
 
         # 21-30
-        contents = contents + random_choice_from_array([" 1", " 2", " 3", " 4", " 5", " 6", " 7", " 8", "99"])   # CLM_PHRMCY_SRVC_TYPE_CD
+        contents += random_choice_from_array([" 1", " 2", " 3", " 4", " 5", " 6", " 7", " 8", "99"])   # CLM_PHRMCY_SRVC_TYPE_CD
 
-        contents = contents + "\n"
+        contents += "\n"
 
     generate_files("CCLF7", file_date, contents)        

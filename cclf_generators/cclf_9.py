@@ -26,13 +26,13 @@ for month in range(number_of_file_months):
 
     for _ in range(number_of_lines_per_file):
         # 1-6
-        contents = contents + random_choice_from_array(["X", " "])                              # HICN_MBI_XREF_IND
-        contents = contents + random_alpha_string(11)                                           # CRNT_NUM
-        contents = contents + random_alpha_string(11)                                           # PRVS_NUM
-        contents = contents + random_date(datetime(1940, 1, 1), datetime(1970, 12, 31))         # PRVS_ID_EFCTV_DT
-        contents = contents + random_date(datetime(1940, 1, 1), datetime(1970, 12, 31))         # PRVS_ID_OBSLT_DT
-        contents = contents + random_alpha_string(12)                                           # BENE_RRB_NUM
+        contents += random_choice_from_array(["X", " "])                              # HICN_MBI_XREF_IND
+        contents += random_alpha_string(11)                                           # CRNT_NUM
+        contents += random_alpha_string(11)                                           # PRVS_NUM
+        contents += random_date(datetime(1940, 1, 1), datetime(1970, 12, 31))         # PRVS_ID_EFCTV_DT
+        contents += random_date(datetime(1940, 1, 1), datetime(1970, 12, 31))         # PRVS_ID_OBSLT_DT
+        contents += random_alpha_string(12)                                           # BENE_RRB_NUM
 
-        contents = contents + "\n"
+        contents += "\n"
 
     generate_files("CCLF9", file_date, contents)        

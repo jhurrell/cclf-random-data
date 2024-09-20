@@ -2,7 +2,8 @@
 import subprocess
 import sys
 sys.path.append("./utils/")
-from utils import purge_output_folder, cache_beneficiaries, cache_providers, cache_diagnoses
+from utils import purge_output_folder
+from _cache_generated import cache_all
 
 # Specifies the number of file dates that will be generated. Each file type 
 # (CCLF1, CCLF2...) supports 9 different filename conventions so a single date 
@@ -10,14 +11,12 @@ from utils import purge_output_folder, cache_beneficiaries, cache_providers, cac
 # in 36 files and so on. 
 number_of_file_months = 0
 
-# Specifies the number of lines that will be written to each file. Note that 
-# large numbers of records will take a long time to generate and really provide 
-# little to no value for the purposes of this script.
-number_of_lines_per_file = 1000
-
 # Specifies the total population size of beneficiaries that can be randomly
 # chosen and used to generate files.
 number_of_beneficiaries = 100
+
+# Specifies the number of claims that will be generated.
+number_of_claims = 1000
 
 # Specifies the total population size of beneficiaries that can be randomly
 # chosen and used to generate files.
@@ -32,14 +31,12 @@ number_of_diagnoses = 1000
 purge_output_folder()
 
 # Prepare the caches.
-cache_beneficiaries(number_of_beneficiaries)
-cache_providers(number_of_providers)
-cache_diagnoses(number_of_diagnoses)
+cache_all(number_of_beneficiaries, number_of_claims, number_of_providers)
 
     
 # Specifies the scripts that will be called each time main is executed.
 scripts = [
-    "./cclf_generators/cclf_1.py", 
+    # "./cclf_generators/cclf_1.py", 
     # "./cclf_generators/cclf_2.py", 
     # "./cclf_generators/cclf_3.py", 
     # "./cclf_generators/cclf_4.py", 
@@ -53,7 +50,7 @@ scripts = [
 ]
 
 # Convert the arguments to strins.
-args = [str(number_of_file_months), str(number_of_lines_per_file)]
+args = [str(number_of_file_months)]
 
 for script in scripts:
     result = subprocess.run([sys.executable, script] + args, capture_output=False, text=True)

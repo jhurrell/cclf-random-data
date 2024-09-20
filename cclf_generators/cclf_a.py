@@ -26,46 +26,46 @@ for month in range(number_of_file_months):
 
     for _ in range(number_of_lines_per_file):
         # 1-10
-        contents = contents + random_int_by_len(13)                     # CUR_CLM_UNIQ_ID
-        contents = contents + random_alpha_string(11)                   # BENE_MBI_ID
-        contents = contents + random_alpha_string(11)                   # BENE_HIC_NUM
-        contents = contents + random_choice_from_array(["10", "20", "30", "40", "50", "60", "61"])      # CLM_TYPE_CD
-        contents = contents + random_date(datetime(2024, 1, 1), datetime(2024, 12, 31))                 # CLM_ACTV_CARE_FROM_DT
-        contents = contents + random_choice_from_array(["Y", "N"])      # CLM_NGACO_PBPMT_SW
-        contents = contents + random_choice_from_array(["Y", "N"])      # CLM_NGACO_PDSCHRG_HCBS_SW
-        contents = contents + random_choice_from_array(["Y", "N"])      # CLM_NGACO_SNF_WVR_SW
-        contents = contents + random_choice_from_array(["Y", "N"])      # CLM_NGACO_TLHLTH_SW
-        contents = contents + random_choice_from_array(["Y", "N"])      # CLM_NGACO_CPTATN_SW
+        contents += random_int_by_len(13)                     # CUR_CLM_UNIQ_ID
+        contents += random_alpha_string(11)                   # BENE_MBI_ID
+        contents += random_alpha_string(11)                   # BENE_HIC_NUM
+        contents += random_choice_from_array(["10", "20", "30", "40", "50", "60", "61"])      # CLM_TYPE_CD
+        contents += random_date(datetime(2024, 1, 1), datetime(2024, 12, 31))                 # CLM_ACTV_CARE_FROM_DT
+        contents += random_choice_from_array(["Y", "N"])      # CLM_NGACO_PBPMT_SW
+        contents += random_choice_from_array(["Y", "N"])      # CLM_NGACO_PDSCHRG_HCBS_SW
+        contents += random_choice_from_array(["Y", "N"])      # CLM_NGACO_SNF_WVR_SW
+        contents += random_choice_from_array(["Y", "N"])      # CLM_NGACO_TLHLTH_SW
+        contents += random_choice_from_array(["Y", "N"])      # CLM_NGACO_CPTATN_SW
 
         # 11-20
-        contents = contents + random_alpha_string(2)                    # CLM_DEMO_1ST_NUM
-        contents = contents + random_alpha_string(2)                    # CLM_DEMO_2ND_NUM
-        contents = contents + random_alpha_string(2)                    # CLM_DEMO_3RD_NUM
-        contents = contents + random_alpha_string(2)                    # CLM_DEMO_4TH_NUM
-        contents = contents + random_alpha_string(2)                    # CLM_DEMO_5TH_NUM
-        contents = contents + random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_PBP_INCLSN_AMT
-        contents = contents + random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_PBP_RDCTN_AMT
-        contents = contents + random_choice_from_array(["Y", "N"])                  # CLM_NGACO_CMG_WVR_SW
-        contents = contents + random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_INSTNL_PER_DIEM_AMT
-        contents = contents + random_float_in_range(-9999.9999, 9999.9999, 15)      # CLM_MDCR_IP_BENE_DDCTBL_AMT
+        contents += random_alpha_string(2)                    # CLM_DEMO_1ST_NUM
+        contents += random_alpha_string(2)                    # CLM_DEMO_2ND_NUM
+        contents += random_alpha_string(2)                    # CLM_DEMO_3RD_NUM
+        contents += random_alpha_string(2)                    # CLM_DEMO_4TH_NUM
+        contents += random_alpha_string(2)                    # CLM_DEMO_5TH_NUM
+        contents += random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_PBP_INCLSN_AMT
+        contents += random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_PBP_RDCTN_AMT
+        contents += random_choice_from_array(["Y", "N"])                  # CLM_NGACO_CMG_WVR_SW
+        contents += random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_INSTNL_PER_DIEM_AMT
+        contents += random_float_in_range(-9999.9999, 9999.9999, 15)      # CLM_MDCR_IP_BENE_DDCTBL_AMT
 
         # 21-30
-        contents = contents + random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_MDCR_COINSRNC_AMT
-        contents = contents + random_float_in_range(-9999.9999, 9999.9999, 15)      # CLM_BLOOD_LBLTY_AMT
-        contents = contents + random_float_in_range(-9999.9999, 9999.9999, 15)      # CLM_INSTNL_PRFNL_AMT
-        contents = contents + random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_NCVRD_CHRG_AMT
-        contents = contents + random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_MDCR_DDCTBL_AMT
-        contents = contents + random_alpha_string(2)                                # CLM_RLT_COND_CD
-        contents = contents + random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_OPRTNL_OUTLR_AMT
-        contents = contents + random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_MDCR_NEW_TECH_AMT
-        contents = contents + random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_ISLET_ISOLN_AMT
-        contents = contents + random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_SQSTRTN_RDCTN_AMT
+        contents += random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_MDCR_COINSRNC_AMT
+        contents += random_float_in_range(-9999.9999, 9999.9999, 15)      # CLM_BLOOD_LBLTY_AMT
+        contents += random_float_in_range(-9999.9999, 9999.9999, 15)      # CLM_INSTNL_PRFNL_AMT
+        contents += random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_NCVRD_CHRG_AMT
+        contents += random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_MDCR_DDCTBL_AMT
+        contents += random_alpha_string(2)                                # CLM_RLT_COND_CD
+        contents += random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_OPRTNL_OUTLR_AMT
+        contents += random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_MDCR_NEW_TECH_AMT
+        contents += random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_ISLET_ISOLN_AMT
+        contents += random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_SQSTRTN_RDCTN_AMT
 
         # 31-33
-        contents = contents + random_alpha_string(3)                                # CLM_1_REV_CNTR_ANSI_RSN_CD       
-        contents = contents + random_alpha_string(2)                                # CLM_1_REV_CNTR_ANSI_GRP_CD
-        contents = contents + random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_MIPS_PMT_AMT
+        contents += random_alpha_string(3)                                # CLM_1_REV_CNTR_ANSI_RSN_CD       
+        contents += random_alpha_string(2)                                # CLM_1_REV_CNTR_ANSI_GRP_CD
+        contents += random_float_in_range(-9999.9999, 9999.9999, 19)      # CLM_MIPS_PMT_AMT
 
-        contents = contents + "\n"
+        contents += "\n"
 
     generate_files("CCLFA", file_date, contents)        

@@ -41,3 +41,5 @@ for each field in the file.
 [Patient Discharge Status Code (FFS)](https://resdac.org/sites/datadocumentation.resdac.org/files/Patient%20Discharge%20Status%20Code%20Table%20%28FFS%29.txt)
 [Claim Source Inpatient Admission Code (FFS)](https://resdac.org/cms-data/variables/claim-source-inpatient-admission-code-ffs)
 [Claim Frequency Code (FFS)](https://resdac.org/cms-data/variables/claim-frequency-code-ffs)
+[Revenue Center Code (FFS)](https://resdac.org/cms-data/variables/revenue-center-code-ffs)
+[Revenue Center APC or HIPPS Code](https://resdac.org/cms-data/variables/revenue-center-apc-or-hipps-code)

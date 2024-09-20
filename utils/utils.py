@@ -7,23 +7,27 @@ import shutil
 
 from faker import Faker
 from datetime import timedelta
-from beneficiary import generate_beneficiaries
-from provider import generate_providers
-from diagnosis import generate_diagnoses
 
-from claim_type_code import get_codes as ctc_get_codes
-from reason_payment_code import get_codes as rpc_get_codes
-from nhc_primary_payer_code import get_codes as nhc_get_codes
-from ffs_patient_discharge_code import get_codes as ffs_get_codes
-from drg_code import get_codes as drg_get_codes
-from claim_bill_facility_type_code import get_codes as cbfc_get_codes
-from claim_service_classification_type_code import get_codes as csc_get_codes
-from claim_outpatient_service_type_code import get_codes as cosc_get_codes
 from claim_adjustment_type_code import get_codes as catc_get_codes
 from claim_admission_type_code  import get_codes as actc_get_codes
-from claim_source_inpatient_admission_code import get_codes as csaic_get_codes
+from claim_bill_facility_type_code import get_codes as cbfc_get_codes
 from claim_frequency_code import get_codes as cfc_get_codes
-from claim_query_code import get_codes as cqc_get_codes 
+from claim_outpatient_service_type_code import get_codes as cosc_get_codes
+from claim_query_code import get_codes as cqc_get_codes
+from claim_service_classification_type_code import get_codes as csc_get_codes
+from claim_source_inpatient_admission_code import get_codes as csaic_get_codes
+from claim_type_code import get_codes as ctc_get_codes
+from drg_code import get_codes as drg_get_codes
+from ffs_patient_discharge_code import get_codes as ffs_get_codes
+from icd import get_codes as icd_get_codes
+from nhc_primary_payer_code import get_codes as nhc_get_codes
+from reason_payment_code import get_codes as rpc_get_codes
+from revenue_code_ffs import get_codes as revo_get_codes
+from hcpcs import get_codes as hcpcs_get_codes
+from hcpcs_mod import get_codes as hcpcs_mod_get_codes
+from cpt import get_codes as cpt_get_codes
+from cpt_mod import get_codes as cpt_mod_get_codes
+from hipps import get_codes as hipps_get_codes
 
 fake = Faker()
 
@@ -45,15 +49,6 @@ def purge_output_folder():
         elif os.path.isdir(file_path):
             shutil.rmtree(file_path)  # Remove the directory and its contents
 
-# Cache beneficiaries.
-def cache_beneficiaries(quantity):
-    beneficiaries = generate_beneficiaries(quantity)
-    if not os.path.exists(cache_path):
-        os.makedirs(cache_path, exist_ok=True)
-
-    cache_file_path = f"{cache_path}/beneficiaries.pkl"
-    with open(f"{cache_file_path}", 'wb') as f:
-        pickle.dump(beneficiaries, f)
 
 def get_beneficiaries():
     if os.path.exists(f"{cache_path}/beneficiaries.pkl"):
@@ -62,16 +57,13 @@ def get_beneficiaries():
         
     return {}    
 
-
-# Cache providers.
-def cache_providers(quantity):
-    providers = generate_providers(quantity)
-    if not os.path.exists(cache_path):
-        os.makedirs(cache_path, exist_ok=True)
-
-    cache_file_path = f"{cache_path}/providers.pkl"
-    with open(f"{cache_file_path}", 'wb') as f:
-        pickle.dump(providers, f)
+def get_claims():
+    if os.path.exists(f"{cache_path}/claims.pkl"):
+        with open(f"{cache_path}/claims.pkl", 'rb') as f:
+            return pickle.load(f)
+        
+    print("path does not exist")
+    return {}   
 
 def get_providers():
     if os.path.exists(f"{cache_path}/providers.pkl"):
@@ -79,17 +71,6 @@ def get_providers():
             return pickle.load(f)
         
     return {}   
-
-
-# Cache diagnoses.
-def cache_diagnoses(quantity):
-    providers = generate_diagnoses(quantity)
-    if not os.path.exists(cache_path):
-        os.makedirs(cache_path, exist_ok=True)
-
-    cache_file_path = f"{cache_path}/icd-10.pkl"
-    with open(f"{cache_file_path}", 'wb') as f:
-        pickle.dump(providers, f)
 
 def get_diagnoses():
     if os.path.exists(f"{cache_path}/icd-10.pkl"):
@@ -134,6 +115,9 @@ def nhc():
 def ffs():
     return ffs_get_codes()
 
+def icd():
+    return icd_get_codes()
+
 # CMS DRG / MSDRG Codes
 def drg():
     return drg_get_codes()
@@ -147,6 +131,28 @@ def cfc():
 def cqc():
     return cqc_get_codes()
 
+def revcd():
+    return revo_get_codes()
+
+def hcpcs():
+    return hcpcs_get_codes()
+
+def hcpcsm():
+    return hcpcs_mod_get_codes()
+
+def cpt():
+    return cpt_get_codes()
+
+def cptm():
+    return cpt_mod_get_codes()
+
+
+def hipps():
+    return hipps_get_codes()
+
+# Returns a date this year in the format YYYY-MM-DD.
+def dt():
+    return fake.date_this_year().strftime("%Y-%m-%d")
 
 # Returns a current numberic following the pattern (-)#.##.
 def dol():
