@@ -10,7 +10,7 @@ fake = Faker()
 sys.path.append("./utils/")
 from utils import dol, generate_files
 from utils import get_claims, get_beneficiaries, get_providers
-from utils import ctc, rpt, tsc, pos, hcpcs, ppc, icd, cpd, pic, cat, flt, hcpcsm, cdc, tsc
+from utils import ctc, tsc, pos, hcpcs, ppc, cpd, pic, cat, cdc, tsc
 
 # Capture arguments or default if not provided.
 if len(sys.argv) == 2:

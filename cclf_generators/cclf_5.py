@@ -27,7 +27,6 @@ clm = get_claims()
 bene = get_beneficiaries()  
 prov = get_providers()
 
-
 # Create n days worth of files.
 for month in range(number_of_file_months):
     # Initialize.
