@@ -35,3 +35,9 @@ generate random data that adheres to the specifications provided in the IP.
 
 [ ] Use [faker](https://github.com/joke2k/faker) to generate realistic fake data
 for each field in the file.
+
+[Claim Service Classification Type Code Table](https://resdac.org/cms-data/variables/claim-service-classification-type-code-ffs)
+[Claim Medicare Non-Payment Reason Code Table](https://resdac.org/sites/datadocumentation.resdac.org/files/Claim%20Medicare%20Non-Payment%20Reason%20Code%20Table.txt)
+[Patient Discharge Status Code (FFS)](https://resdac.org/sites/datadocumentation.resdac.org/files/Patient%20Discharge%20Status%20Code%20Table%20%28FFS%29.txt)
+[Claim Source Inpatient Admission Code (FFS)](https://resdac.org/cms-data/variables/claim-source-inpatient-admission-code-ffs)
+[Claim Frequency Code (FFS)](https://resdac.org/cms-data/variables/claim-frequency-code-ffs)

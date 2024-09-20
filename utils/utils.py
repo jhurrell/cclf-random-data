@@ -2,7 +2,164 @@
 import os
 import random
 import string
+import pickle
+import shutil
+
+from faker import Faker
 from datetime import timedelta
+from beneficiary import generate_beneficiaries
+from provider import generate_providers
+from diagnosis import generate_diagnoses
+
+from claim_type_code import get_codes as ctc_get_codes
+from reason_payment_code import get_codes as rpc_get_codes
+from nhc_primary_payer_code import get_codes as nhc_get_codes
+from ffs_patient_discharge_code import get_codes as ffs_get_codes
+from drg_code import get_codes as drg_get_codes
+from claim_bill_facility_type_code import get_codes as cbfc_get_codes
+from claim_service_classification_type_code import get_codes as csc_get_codes
+from claim_outpatient_service_type_code import get_codes as cosc_get_codes
+from claim_adjustment_type_code import get_codes as catc_get_codes
+from claim_admission_type_code  import get_codes as actc_get_codes
+from claim_source_inpatient_admission_code import get_codes as csaic_get_codes
+from claim_frequency_code import get_codes as cfc_get_codes
+from claim_query_code import get_codes as cqc_get_codes 
+
+fake = Faker()
+
+output_path = "./_output"
+cache_path = f"{output_path}/cache"
+
+# Purge output directory
+def purge_output_folder():
+    if not os.path.exists(output_path):
+        return
+    
+    # Iterate through all files and folders in the directory
+    for filename in os.listdir(output_path):
+        file_path = os.path.join(output_path, filename)
+        
+        # Check if it's a file or directory
+        if os.path.isfile(file_path) or os.path.islink(file_path):
+            os.remove(file_path)  # Remove the file or link
+        elif os.path.isdir(file_path):
+            shutil.rmtree(file_path)  # Remove the directory and its contents
+
+# Cache beneficiaries.
+def cache_beneficiaries(quantity):
+    beneficiaries = generate_beneficiaries(quantity)
+    if not os.path.exists(cache_path):
+        os.makedirs(cache_path, exist_ok=True)
+
+    cache_file_path = f"{cache_path}/beneficiaries.pkl"
+    with open(f"{cache_file_path}", 'wb') as f:
+        pickle.dump(beneficiaries, f)
+
+def get_beneficiaries():
+    if os.path.exists(f"{cache_path}/beneficiaries.pkl"):
+        with open(f"{cache_path}/beneficiaries.pkl", 'rb') as f:
+            return pickle.load(f)
+        
+    return {}    
+
+
+# Cache providers.
+def cache_providers(quantity):
+    providers = generate_providers(quantity)
+    if not os.path.exists(cache_path):
+        os.makedirs(cache_path, exist_ok=True)
+
+    cache_file_path = f"{cache_path}/providers.pkl"
+    with open(f"{cache_file_path}", 'wb') as f:
+        pickle.dump(providers, f)
+
+def get_providers():
+    if os.path.exists(f"{cache_path}/providers.pkl"):
+        with open(f"{cache_path}/providers.pkl", 'rb') as f:
+            return pickle.load(f)
+        
+    return {}   
+
+
+# Cache diagnoses.
+def cache_diagnoses(quantity):
+    providers = generate_diagnoses(quantity)
+    if not os.path.exists(cache_path):
+        os.makedirs(cache_path, exist_ok=True)
+
+    cache_file_path = f"{cache_path}/icd-10.pkl"
+    with open(f"{cache_file_path}", 'wb') as f:
+        pickle.dump(providers, f)
+
+def get_diagnoses():
+    if os.path.exists(f"{cache_path}/icd-10.pkl"):
+        with open(f"{cache_path}/icd-10.pkl", 'rb') as f:
+            return pickle.load(f)
+        
+    return {}  
+
+# Claim Admission Type Codes
+def atc():
+    return actc_get_codes()
+
+# Claim Adjustment Type Codes
+def cat():
+    return catc_get_codes()
+
+# Claim Bill Facility Type Codes
+def cbfc():
+    return cbfc_get_codes()
+
+# Claim Outpatient Service Type Codes
+def cosc():
+    return cosc_get_codes()
+
+# Claim Service Classification Type Codes
+def ctc():
+    return ctc_get_codes()
+
+# Claim Medicare Non-Payment Reason Codes
+def nprc():
+    return rpc_get_codes()
+
+# Claim Service Classification Type Codes
+def csc():
+    return csc_get_codes()
+
+# NCH Primary Payer Code (if not Medicare)
+def nhc():
+    return nhc_get_codes()
+
+# FFS Patient Discharge Code
+def ffs():
+    return ffs_get_codes()
+
+# CMS DRG / MSDRG Codes
+def drg():
+    return drg_get_codes()
+
+def csaic():
+    return csaic_get_codes()
+
+def cfc():
+    return cfc_get_codes()
+
+def cqc():
+    return cqc_get_codes()
+
+
+# Returns a current numberic following the pattern (-)#.##.
+def dol():
+    return f"{random.uniform(-99, 9999):.2f}"
+
+# Returns a float following the pattern #.####.
+def flt():
+    return f"{random.uniform(0, 9999):.4f}"
+
+def claim_num(prefix, length):
+    characters = string.ascii_letters + string.digits
+    return prefix + ''.join(random.choices(characters, k=length - len(prefix))).upper()
+
 
 def random_date(start_date, end_date):
     time_between_dates = end_date - start_date
@@ -67,14 +224,14 @@ def generate_files(type, date, contents):
     # Define the filename patterns for the main types.
     primary_file_patterns = {
         f"P.A{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        f"P.A{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
-        f"P.F{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        f"P.F{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
-        f"P.D{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        f"P.D{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
-        f"P.K{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        f"P.C{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        f"P.P{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        # f"P.A{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
+        # f"P.F{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        # f"P.F{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
+        # f"P.D{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        # f"P.D{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
+        # f"P.K{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        # f"P.C{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        # f"P.P{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
     }
 
     # Define the path for the files.
@@ -88,7 +245,7 @@ def generate_files(type, date, contents):
         with open(f"{directory}/{file}", "w") as f:
             f.write(contents)  
 
-
+    return
     # Define the filename patterns for the Summary Statistics.
     summary_file_patterns = {
         f"P.A{rand_a}.ACO.ZC0Y{rand_b}.D{date}.T010203t",
