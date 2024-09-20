@@ -29,25 +29,20 @@ for each field in the file. There is no intent to create realistic data, as this
 would require a significant amount of time and resources. Instead, the scripts
 generate random data that adheres to the specifications provided in the IP.
 
-## TODO
+## Resources
 
-[ ] Get access to real data to test assertions and fix any issues that arise.
-
-[ ] Use [faker](https://github.com/joke2k/faker) to generate realistic fake data
-for each field in the file.
-
-[Claim Service Classification Type Code Table](https://resdac.org/cms-data/variables/claim-service-classification-type-code-ffs)
-[Claim Medicare Non-Payment Reason Code Table](https://resdac.org/sites/datadocumentation.resdac.org/files/Claim%20Medicare%20Non-Payment%20Reason%20Code%20Table.txt)
-[Patient Discharge Status Code (FFS)](https://resdac.org/sites/datadocumentation.resdac.org/files/Patient%20Discharge%20Status%20Code%20Table%20%28FFS%29.txt)
-[Claim Source Inpatient Admission Code (FFS)](https://resdac.org/cms-data/variables/claim-source-inpatient-admission-code-ffs)
-[Claim Frequency Code (FFS)](https://resdac.org/cms-data/variables/claim-frequency-code-ffs)
-[Revenue Center Code (FFS)](https://resdac.org/cms-data/variables/revenue-center-code-ffs)
-[Revenue Center APC or HIPPS Code](https://resdac.org/cms-data/variables/revenue-center-apc-or-hipps-code)
-[Claim Diagnosis Code I Diagnosis Present on Admission (POA) Indicator Code (FFS)](https://resdac.org/cms-data/variables/claim-diagnosis-code-i-diagnosis-present-admission-poa-indicator-code-ffs)
-[Line CMS Provider Specialty Code](https://resdac.org/cms-data/variables/line-cms-provider-specialty-code)
-[Line CMS Type Service Code](https://resdac.org/cms-data/variables/line-cms-type-service-code)
-[Line Place Of Service Code (FFS)](https://resdac.org/cms-data/variables/line-place-service-code-ffs)
-[Line Primary Payer Code (if not Medicare)](https://resdac.org/cms-data/variables/line-primary-payer-code-if-not-medicare)
-[Carrier Claim Payment Denial Code](https://resdac.org/cms-data/variables/carrier-claim-payment-denial-code)
-[Line Processing Indicator Code](https://resdac.org/cms-data/variables/line-processing-indicator-code)
-[Beneficiary Dual Status Code](https://resdac.org/cms-data/variables/edual1-12)
+- [Beneficiary Dual Status Code](https://resdac.org/cms-data/variables/edual1-12)
+- [Carrier Claim Payment Denial Code](https://resdac.org/cms-data/variables/carrier-claim-payment-denial-code)
+- [Claim Diagnosis Code I Diagnosis Present on Admission (POA) Indicator Code (FFS)](https://resdac.org/cms-data/variables/claim-diagnosis-code-i-diagnosis-present-admission-poa-indicator-code-ffs)
+- [Claim Frequency Code (FFS)](https://resdac.org/cms-data/variables/claim-frequency-code-ffs)
+- [Claim Medicare Non-Payment Reason Code Table](https://resdac.org/sites/datadocumentation.resdac.org/files/Claim%20Medicare%20Non-Payment%20Reason%20Code%20Table.txt)
+- [Claim Service Classification Type Code Table](https://resdac.org/cms-data/variables/claim-service-classification-type-code-ffs)
+- [Claim Source Inpatient Admission Code (FFS)](https://resdac.org/cms-data/variables/claim-source-inpatient-admission-code-ffs)
+- [Line CMS Provider Specialty Code](https://resdac.org/cms-data/variables/line-cms-provider-specialty-code)
+- [Line CMS Type Service Code](https://resdac.org/cms-data/variables/line-cms-type-service-code)
+- [Line Place Of Service Code (FFS)](https://resdac.org/cms-data/variables/line-place-service-code-ffs)
+- [Line Primary Payer Code (if not Medicare)](https://resdac.org/cms-data/variables/line-primary-payer-code-if-not-medicare)
+- [Line Processing Indicator Code](https://resdac.org/cms-data/variables/line-processing-indicator-code)
+- [Patient Discharge Status Code (FFS)](https://resdac.org/sites/datadocumentation.resdac.org/files/Patient%20Discharge%20Status%20Code%20Table%20%28FFS%29.txt)
+- [Revenue Center APC or HIPPS Code](https://resdac.org/cms-data/variables/revenue-center-apc-or-hipps-code)
+- [Revenue Center Code (FFS)](https://resdac.org/cms-data/variables/revenue-center-code-ffs)
