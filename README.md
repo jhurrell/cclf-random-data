@@ -9,9 +9,10 @@ The PDF for this specification can be
 [downloaded here](https://www.cms.gov/files/document/cclf-information-packet.pdf).
 
 Each of the file types is generated using a Python script that generates random
-data based on the specifications provided in the IP. The scripts are located in
-the current directory and can be run from the command line using the following
-commands:
+data based on the specifications provided in the PDF.
+
+Open `main.py` and change the `number_of` properties as desired, then execute
+`main.py` to generate the files. For example:
 
 ```bash
 python3 main.py
