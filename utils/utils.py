@@ -9,45 +9,45 @@ sys.path.append("./utils/reference")
 from faker import Faker
 from functools import lru_cache
 
-from beneficiary_dual_status_code import get_codes as bdsc_get_codes
+from beneficiary_dual_status import get_codes as bdsc_get_codes
 from beneficiary_entitlement_buy_in_indicator import get_codes as bebi_get_codes
-from beneficiary_medicare_status_code import get_codes as bmcsc_get_codes
+from beneficiary_medicare_status import get_codes as bmcsc_get_codes
 from beneficiary_original_entitlement_reason_code import get_codes as beorcc_get_codes
-from beneficiary_race_code import get_codes as brc_get_codes
-from carrier_payment_denial_code import get_codes as cpd_get_codes
-from claim_adjustment_type_code import get_codes as catc_get_codes
-from claim_admission_type_code  import get_codes as actc_get_codes
-from claim_bill_facility_type_code import get_codes as cbfc_get_codes
-from claim_dispensing_code import get_codes as cdsc_get_codes
-from claim_disposition_code import get_codes as cdc_get_codes
-from claim_frequency_code import get_codes as cfc_get_codes
-from claim_outpatient_service_type_code import get_codes as cosc_get_codes
-from claim_product_type_code import get_codes as ptc_get_codes
-from claim_query_code import get_codes as cqc_get_codes
-from claim_service_classification_type_code import get_codes as csc_get_codes
-from claim_source_inpatient_admission_code import get_codes as csaic_get_codes
-from claim_type_code import get_codes as ctc_get_codes
+from beneficiary_race import get_codes as brc_get_codes
+from carrier_payment_denial import get_codes as cpd_get_codes
+from claim_adjustment_type import get_codes as catc_get_codes
+from claim_admission_type  import get_codes as actc_get_codes
+from claim_bill_facility_type import get_codes as cbfc_get_codes
+from claim_dispensing import get_codes as cdsc_get_codes
+from claim_disposition import get_codes as cdc_get_codes
+from claim_frequency import get_codes as cfc_get_codes
+from claim_outpatient_service_type import get_codes as cosc_get_codes
+from claim_product_type import get_codes as ptc_get_codes
+from claim_query import get_codes as cqc_get_codes
+from claim_service_classification_type import get_codes as csc_get_codes
+from claim_source_inpatient_admission import get_codes as csaic_get_codes
+from claim_type import get_codes as ctc_get_codes
 from cpt import get_codes as cpt_get_codes
 from cpt_mod import get_codes as cpt_mod_get_codes
-from daw_product_selection_code import get_codes as daw_get_codes
-from drg_code import get_codes as drg_get_codes
-from ffs_patient_discharge_code import get_codes as ffs_get_codes
+from daw_product_selection import get_codes as daw_get_codes
+from drg import get_codes as drg_get_codes
+from ffs_patient_discharge import get_codes as ffs_get_codes
 from hcpcs import get_codes as hcpcs_get_codes
 from hcpcs_mod import get_codes as hcpcs_mod_get_codes
 from hipps import get_codes as hipps_get_codes
 from icd import get_codes as icd_get_codes
-from nhc_primary_payer_code import get_codes as nhc_get_codes
-from pharmacy_service_type_code import get_codes as pstc_get_codes
-from place_of_service_code import get_codes as pos_get_codes
+from nhc_primary_payer import get_codes as nhc_get_codes
+from pharmacy_service_type import get_codes as pstc_get_codes
+from place_of_service import get_codes as pos_get_codes
 from present_on_admission import get_codes as poa_get_codes
-from primary_payer_code import get_codes as ppc_get_codes
-from processing_indicator_code import get_codes as pic_get_codes
-from provider_service_identifier_qualifier_code import get_codes as psiqc_get_codes
-from provider_specialty_code import get_codes as psc_get_codes
-from reason_payment_code import get_codes as rpc_get_codes
-from rendering_provider_type_code import get_codes as rptc_get_codes
-from revenue_code_ffs import get_codes as revo_get_codes
-from type_service_code import get_codes as tsc_get_codes
+from primary_payer import get_codes as ppc_get_codes
+from processing_indicator import get_codes as pic_get_codes
+from provider_service_identifier_qualifier import get_codes as psiqc_get_codes
+from provider_specialty import get_codes as psc_get_codes
+from reason_payment import get_codes as rpc_get_codes
+from rendering_provider_type import get_codes as rptc_get_codes
+from revenue_code import get_codes as revo_get_codes
+from type_service import get_codes as tsc_get_codes
 
 fake = Faker()
 
