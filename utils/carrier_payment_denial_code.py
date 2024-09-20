@@ -2,7 +2,6 @@
 # https://resdac.org/cms-data/variables/carrier-claim-payment-denial-code
 def get_codes():
     return [
-
         # Only one-byte was used until 1/2011 (currently, either 1- or 2-byte values may be used, symbols not currently allowed)
 		"0",     # Denied
 		"1",     # Physician/supplier
