@@ -98,13 +98,11 @@ def get_providers():
 
 def get_bene(mbi):
     beneficiaries = get_beneficiaries()
-    result = next((bene for bene in beneficiaries if bene["mbi"] == mbi), None)
-    return result
+    return beneficiaries[mbi]
 
 def get_prov(npi):
     providers = get_providers()
-    result = next((prov for prov in providers if prov["npi"] == npi), None)
-    return result
+    return providers[npi]
 
 
 def bdsc():

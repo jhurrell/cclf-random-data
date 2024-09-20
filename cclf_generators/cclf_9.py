@@ -23,7 +23,7 @@ else:
     number_of_file_months = 1
 
 # Prepare data structures for lookups.
-beneficiaries = get_beneficiaries()  
+beneficiaries = list(get_beneficiaries().values())
 
 # Create n days worth of files.
 for month in range(number_of_file_months):

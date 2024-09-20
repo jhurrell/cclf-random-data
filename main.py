@@ -22,10 +22,6 @@ number_of_claims = 1000
 # chosen and used to generate files.
 number_of_providers = 200
 
-# Specifies the randomly generated ICD-10 codes that will be available for use
-# in claims generation.
-number_of_diagnoses = 1000
-
 
 # Clean up date from previous runs.
 purge_output_folder()
@@ -33,7 +29,7 @@ purge_output_folder()
 # Prepare the caches.
 cache_all(number_of_beneficiaries, number_of_claims, number_of_providers)
 
-    
+
 # Specifies the scripts that will be called each time main is executed.
 scripts = [
     "./cclf_generators/cclf_1.py", 

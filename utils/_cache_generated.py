@@ -10,11 +10,10 @@ fake = Faker()
 output_path = "./_output"
 cache_path = f"{output_path}/cache"
 
-beneficiaries = []
+beneficiaries = {}
+providers = {}
 claims = []
-providers = []
 
-   
 
 def cache_all(number_of_beneficiaries, number_of_claims, number_of_providers):
     print("Caching:")
@@ -36,6 +35,7 @@ def cache_claims(number_of_claims):
     print(f"\tClaims {number_of_claims}...")
     generate_claims(number_of_claims)
     cache_data("claims", claims)
+
 
 def generate_beneficiaries(quantity):
     today = date.today()
@@ -71,12 +71,11 @@ def generate_beneficiaries(quantity):
             "plus4": fake.postalcode_plus4()[-4:]
         }
         
-        beneficiaries.append(person)
+        beneficiaries[person["mbi"]] = person
 
 
 def generate_providers(quantity):
-      for _ in range(quantity):
-
+    for _ in range(quantity):
         provider = {
             "npi": "".join(random.choices("0123456789", k=10)),     # NPI
             "fnpi": "".join(random.choices("0123456789", k=10)),    # Facility NPI
@@ -98,7 +97,8 @@ def generate_providers(quantity):
             "plus4": fake.postalcode_plus4()[-4:]
         }
         
-        providers.append(provider)  
+        providers[provider["npi"]] = provider
+
 
 
 def generate_claims(quantity):
@@ -109,8 +109,8 @@ def generate_claims(quantity):
         # Prepare the claim
         nul = f"CN{str(index + 1).zfill(pad_size)}"
         cd = fake.date_this_year()
-        bene = random.choice(beneficiaries)
-        prov = random.choice(providers)
+        bene = random.choice(list(beneficiaries.values()))
+        prov = random.choice(list(providers.values()))
 
         # Generate between 1 and 5 claim lines.
         for ln in range(1, random.randint(1, 5)):
@@ -133,7 +133,6 @@ def generate_claims(quantity):
             claims.append(claim)
 
 
-
 # Cache data with key.
 def cache_data(key, data):
     if not os.path.exists(cache_path):
@@ -143,7 +142,7 @@ def cache_data(key, data):
     with open(f"{cache_file_path}", 'wb') as f:
         pickle.dump(data, f)
 
-
+   
 # Define the characters that can be used for each element of an MBI.
 c = "123456789"
 n = "0123456789"
