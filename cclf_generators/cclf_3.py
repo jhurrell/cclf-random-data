@@ -8,13 +8,13 @@ fake = Faker()
 
 # Add the path of the folder where the module is located
 sys.path.append("./utils/")
-from utils import generate_files, dol
+from utils import generate_files
 from utils import get_claims, get_beneficiaries, get_providers
-from utils import ctc, icd, revcd, dt, hcpcs, flt, hcpcsm, hipps, icd
+from utils import ctc, icd
 
 
 # Capture arguments or default if not provided.
-if len(sys.argv) == 3:
+if len(sys.argv) == 2:
     # Capture arguments and convert them
     try:
         number_of_file_months = int(sys.argv[1])
@@ -39,6 +39,7 @@ for month in range(number_of_file_months):
     for claim in clm:
         pr = random.choice(prov)
         diag = random.choice(icd())
+        c = ctc()
 
         # 1-10
         contents += claim["num"].ljust(13)      # CUR_CLM_UNIQ_ID

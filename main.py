@@ -9,7 +9,7 @@ from _cache_generated import cache_all
 # (CCLF1, CCLF2...) supports 9 different filename conventions so a single date 
 # will result in 18 files (primary file and summary file) 2 dates will result 
 # in 36 files and so on. 
-number_of_file_months = 0
+number_of_file_months = 1
 
 # Specifies the total population size of beneficiaries that can be randomly
 # chosen and used to generate files.
@@ -36,9 +36,9 @@ cache_all(number_of_beneficiaries, number_of_claims, number_of_providers)
     
 # Specifies the scripts that will be called each time main is executed.
 scripts = [
-    # "./cclf_generators/cclf_1.py", 
-    # "./cclf_generators/cclf_2.py", 
-    # "./cclf_generators/cclf_3.py", 
+    "./cclf_generators/cclf_1.py", 
+    "./cclf_generators/cclf_2.py", 
+    "./cclf_generators/cclf_3.py", 
     # "./cclf_generators/cclf_4.py", 
     # "./cclf_generators/cclf_5.py", 
     # "./cclf_generators/cclf_6.py", 

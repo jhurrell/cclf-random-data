@@ -14,7 +14,7 @@ from utils import ctc, revcd, dt, hcpcs, flt, hcpcsm, hipps
 
 
 # Capture arguments or default if not provided.
-if len(sys.argv) == 3:
+if len(sys.argv) == 2:
     # Capture arguments and convert them
     try:
         number_of_file_months = int(sys.argv[1])

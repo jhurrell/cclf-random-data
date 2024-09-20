@@ -12,9 +12,8 @@ from utils import generate_files, dol
 from utils import get_claims, get_beneficiaries, get_providers
 from utils import icd, ctc, nprc, cbfc, csc, nhc, ffs, drg, cosc, cat, atc, csaic, cfc, cqc, dt
 
-
 # Capture arguments or default if not provided.
-if len(sys.argv) == 3:
+if len(sys.argv) == 2:
     # Capture arguments and convert them
     try:
         number_of_file_months = int(sys.argv[1])
