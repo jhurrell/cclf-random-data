@@ -1,4 +1,4 @@
-# TODO
+# Claim Adjustment Type Code
 # (from the PDF)
 def get_codes():
     return [

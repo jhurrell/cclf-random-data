@@ -3,7 +3,7 @@ import os
 import pickle
 import random
 from faker import Faker
-from utils import ctc, rpt, psc
+from utils import psc
 
 fake = Faker()
 

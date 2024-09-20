@@ -37,6 +37,7 @@ from type_service_code import get_codes as tsc_get_codes
 from primary_payer_code import get_codes as ppc_get_codes
 from carrier_payment_denial_code import get_codes as cpd_get_codes
 from processing_indicator_code import get_codes as pic_get_codes
+from claim_disposition_code import get_codes as cdc_get_codes
 
 fake = Faker()
 
@@ -172,6 +173,9 @@ def pos():
 
 def ppc():
     return ppc_get_codes()
+
+def cdc():
+    return cdc_get_codes()
 
 # Returns a date this year in the format YYYY-MM-DD.
 def dt():
