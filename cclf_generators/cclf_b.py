@@ -32,37 +32,41 @@ for month in range(number_of_file_months):
     file_date = (datetime(2024, 1, 1) + delta).strftime("%y%m%d")
     contents = ""
 
+    # Enumerate the claims
     for claim in claims:
-        bene = get_bene(claim["mbi"])
-        prov = get_prov(claim["npi"])
-        
-        # 1-10
-        contents += claim["num"].ljust(13)          # CUR_CLM_UNIQ_ID
-        contents += claim["ln"].rjust(10)           # CLM_LINE_NUM
-        contents += bene["mbi"]                     # BENE_MBI_ID
-        contents += bene["hic"].ljust(11)           # BENE_HIC_NUM
-        contents += random.choice(ctc()).ljust(2)   # CLM_TYPE_CD
-        contents += ynb()                           # CLM_LINE_NGACO_PBPMT_SW
-        contents += ynb()                           # CLM_LINE_NGACO_PDSCHRG_HCBS_SW
-        contents += ynb()                           # CLM_LINE_NGACO_SNF_WVR_SW
-        contents += ynb()                           # CLM_LINE_NGACO_TLHLTH_SW
-        contents += ynb()                           # CLM_LINE_NGACO_CPTATN_SW
 
-        # 11-20
-        contents += twobyte()                       # CLM_DEMO_1ST_NUM
-        contents += twobyte()                       # CLM_DEMO_2ND_NUM
-        contents += twobyte()                       # CLM_DEMO_3RD_NUM
-        contents += twobyte()                       # CLM_DEMO_4TH_NUM
-        contents += twobyte()                       # CLM_DEMO_5TH_NUM
-        contents += dol().rjust(15)                 # CLM_PBP_INCLSN_AMT
-        contents += dol().rjust(15)                 # CLM_PBP_RDCTN_AMT
-        contents += ynb()                           # CLM_NGACO_CMG_WVR_SW
-        contents += dol().rjust(19)                 # CLM_MDCR_DDCTBL_AMT
-        contents += dol().rjust(15)                 # CLM_SQSTRTN_RDCTN_AMT
+        # Enumerate the claim lines.
+        for claim_line in claim["lines"]:
+            bene = get_bene(claim["mbi"])
+            prov = get_prov(claim["npi"])
+            
+            # 1-10
+            contents += claim["num"].ljust(13)          # CUR_CLM_UNIQ_ID
+            contents += claim_line["ln"].rjust(10)      # CLM_LINE_NUM
+            contents += bene["mbi"]                     # BENE_MBI_ID
+            contents += bene["hic"].ljust(11)           # BENE_HIC_NUM
+            contents += random.choice(ctc()).ljust(2)   # CLM_TYPE_CD
+            contents += ynb()                           # CLM_LINE_NGACO_PBPMT_SW
+            contents += ynb()                           # CLM_LINE_NGACO_PDSCHRG_HCBS_SW
+            contents += ynb()                           # CLM_LINE_NGACO_SNF_WVR_SW
+            contents += ynb()                           # CLM_LINE_NGACO_TLHLTH_SW
+            contents += ynb()                           # CLM_LINE_NGACO_CPTATN_SW
 
-        # 21
-        contents += "?"                             # CLM_LINE_CARR_HPSA_SCRCTY_CD
+            # 11-20
+            contents += twobyte()                       # CLM_DEMO_1ST_NUM
+            contents += twobyte()                       # CLM_DEMO_2ND_NUM
+            contents += twobyte()                       # CLM_DEMO_3RD_NUM
+            contents += twobyte()                       # CLM_DEMO_4TH_NUM
+            contents += twobyte()                       # CLM_DEMO_5TH_NUM
+            contents += dol().rjust(15)                 # CLM_PBP_INCLSN_AMT
+            contents += dol().rjust(15)                 # CLM_PBP_RDCTN_AMT
+            contents += ynb()                           # CLM_NGACO_CMG_WVR_SW
+            contents += dol().rjust(19)                 # CLM_MDCR_DDCTBL_AMT
+            contents += dol().rjust(15)                 # CLM_SQSTRTN_RDCTN_AMT
 
-        contents += "\n"
+            # 21
+            contents += "?"                             # CLM_LINE_CARR_HPSA_SCRCTY_CD
+
+            contents += "\n"
 
     generate_files("CCLFB", file_date, contents)        

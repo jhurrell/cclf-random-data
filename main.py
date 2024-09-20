@@ -13,14 +13,14 @@ number_of_file_months = 1
 
 # Specifies the total population size of beneficiaries that can be randomly
 # chosen and used to generate files.
-number_of_beneficiaries = 5
+number_of_beneficiaries = 100
 
 # Specifies the total population size of beneficiaries that can be randomly
 # chosen and used to generate files.
-number_of_providers = 3
+number_of_providers = 200
 
 # Specifies the number of claims that will be generated.
-number_of_claims = 10
+number_of_claims = 1000
 
 
 # Clean up date from previous runs.

@@ -100,39 +100,44 @@ def generate_providers(quantity):
         providers[provider["npi"]] = provider
 
 
-
+# TODO: Change claims so that each claim can have 1 or more claim lines
+# end embed within the claim.
 def generate_claims(quantity):
     pad_size = 1 + len(str(quantity))
 
-    for i_c in range(quantity):
+    for ic in range(quantity):
 
         # Prepare the claim
-        claim_number = i_c + 1
+        claim_number = ic + 1
         num = f"CN{str(claim_number).zfill(pad_size)}"
         cd = fake.date_this_year()
         bene = random.choice(list(beneficiaries.values()))
         prov = random.choice(list(providers.values()))
 
-        # Generate between 1 and 5 claim lines.
-        for i_l in range(1, random.randint(1, 5)):
-            print(f"{num}")
-            claim = {
-                "num": num,
-                "ln": f"{i_l}",
-                "ccn": fake.numerify("A#######"),
-                "ocn": fake.numerify("B#######"),
-                "mac": fake.numerify("MC###"),
-                "from_dt": cd.strftime("%Y-%m-%d"),
-                "thru_dt": (cd + timedelta(days=random.randint(0, 7))).strftime("%Y-%m-%d"),
+        claim = {
+            "num": num,
+            "ccn": fake.numerify("A#######"),
+            "ocn": fake.numerify("B#######"),
+            "mac": fake.numerify("MC###"),
+            "from_dt": cd.strftime("%Y-%m-%d"),
+            "thru_dt": (cd + timedelta(days=random.randint(0, 7))).strftime("%Y-%m-%d"),
+            "mbi": bene["mbi"],
+            "npi": prov["npi"],
+            "lines": []
+        }
 
-                # Assign the member.
-                "mbi": bene["mbi"],
-
-                # TODO: Assign different NPIs based on billing, rendering...
-                "npi": prov["npi"]
+        # Generate between 1 and 5 claim lines per claim.
+        for icl in range(1, random.randint(1, 5)):
+            cld = (cd + timedelta(days=random.randint(0, 7)))
+            line = {
+                "ln": f"{icl}",
+                "from_dt": cld.strftime("%Y-%m-%d"),
+                "thru_dt": cld.strftime("%Y-%m-%d"),
             }
 
-            claims.append(claim)
+            claim["lines"].append(line)
+
+        claims.append(claim)
 
 
 # Cache data with key.
