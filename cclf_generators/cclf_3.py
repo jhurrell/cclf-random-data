@@ -39,21 +39,21 @@ for month in range(number_of_file_months):
         diag = random.choice(icd())
 
         # 1-10
-        contents += claim["num"].ljust(13)      # CUR_CLM_UNIQ_ID
-        contents += claim["mbi"]                # BENE_MBI_ID
-        contents += "".ljust(11)                # BENE_HIC_NUM
-        contents += random.choice(ctc()).rjust(2)       # CLM_TYPE_CD
-        contents += "1".rjust(2)                # CLM_VAL_SQNC_NUM
-        contents += diag["code"].rjust(7)       # CLM_PRCDR_CD
-        contents += claim["from_dt"]            # CLM_PRCDR_PRFRM_DT
-        contents += "".ljust(11)                # BENE_EQTBL_BIC_HICN_NUM
-        contents += pr["oscar"].ljust(6)        # PRVDR_OSCAR_NUM
-        contents += claim["from_dt"]            # CLM_FROM_DT
+        contents += claim["num"].ljust(13)          # CUR_CLM_UNIQ_ID
+        contents += claim["mbi"]                    # BENE_MBI_ID
+        contents += "".ljust(11)                    # BENE_HIC_NUM
+        contents += random.choice(ctc()).rjust(2)   # CLM_TYPE_CD
+        contents += "1".rjust(2)                    # CLM_VAL_SQNC_NUM
+        contents += diag["code"].rjust(7)           # CLM_PRCDR_CD
+        contents += claim["from_dt"]                # CLM_PRCDR_PRFRM_DT
+        contents += "".ljust(11)                    # BENE_EQTBL_BIC_HICN_NUM
+        contents += pr["oscar"].ljust(6)            # PRVDR_OSCAR_NUM
+        contents += claim["from_dt"]                # CLM_FROM_DT
 
         # 11-13
-        contents += claim["thru_dt"]            # CLM_THRU_DT   
-        contents += diag["ver"]                 # DGNS_PRCDR_ICD_IND
-        contents += pr["fnpi"].rjust(20)        # CLM_BLG_PRVDR_OSCAR_NUM
+        contents += claim["thru_dt"]                # CLM_THRU_DT   
+        contents += diag["ver"]                     # DGNS_PRCDR_ICD_IND
+        contents += pr["fnpi"].rjust(20)            # CLM_BLG_PRVDR_OSCAR_NUM
 
         contents += "\n"
 

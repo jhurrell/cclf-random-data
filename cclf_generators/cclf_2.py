@@ -38,33 +38,33 @@ for month in range(number_of_file_months):
         pr = random.choice(prov)
 
         # 1-10
-        contents += claim["num"].ljust(13)      # CUR_CLM_UNIQ_ID
-        contents += claim["ln"].rjust(10)       # CLM_LINE_NUM
-        contents += claim["mbi"]                # BENE_MBI_ID
-        contents += "".ljust(11)                # BENE_HIC_NUM
+        contents += claim["num"].ljust(13)              # CUR_CLM_UNIQ_ID
+        contents += claim["ln"].rjust(10)               # CLM_LINE_NUM
+        contents += claim["mbi"]                        # BENE_MBI_ID
+        contents += "".ljust(11)                        # BENE_HIC_NUM
         contents += random.choice(ctc()).rjust(2)       # CLM_TYPE_CD
-        contents += claim["from_dt"]            # CLM_LINE_FROM_DT
-        contents += claim["thru_dt"]            # CLM_LINE_THRU_DT
-        contents += random.choice(revcd()).rjust(4)       # CLM_LINE_PROD_REV_CTR_CD
-        contents += dt()                        # CLM_LINE_INSTNL_REV_CTR_DT   
-        contents += random.choice(hcpcs())      # CLM_LINE_HCPCS_CD
+        contents += claim["from_dt"]                    # CLM_LINE_FROM_DT
+        contents += claim["thru_dt"]                    # CLM_LINE_THRU_DT
+        contents += random.choice(revcd()).rjust(4)     # CLM_LINE_PROD_REV_CTR_CD
+        contents += dt()                                # CLM_LINE_INSTNL_REV_CTR_DT   
+        contents += random.choice(hcpcs())              # CLM_LINE_HCPCS_CD
   
         # # 11-20
-        contents += "".ljust(11)                # BENE_EQTBL_BIC_HICN_NUM
-        contents += pr["oscar"].ljust(6)        # PRVDR_OSCAR_NUM
-        contents += claim["from_dt"]            # CLM_FROM_DT
-        contents += claim["thru_dt"]            # CLM_THRU_DT       
-        contents += flt().rjust(24)             # CLM_LINE_SRVC_UNIT_QTY
-        contents += flt().rjust(17)             # CLM_LINE_CVRD_PD_AMT
-        contents += random.choice(hcpcsm())     # HCPCS_1_MDFR_CD
-        contents += random.choice(hcpcsm())     # HCPCS_2_MDFR_CD
-        contents += random.choice(hcpcsm())     # HCPCS_3_MDFR_CD
-        contents += random.choice(hcpcsm())     # HCPCS_4_MDFR_CD
+        contents += "".ljust(11)                        # BENE_EQTBL_BIC_HICN_NUM
+        contents += pr["oscar"].ljust(6)                # PRVDR_OSCAR_NUM
+        contents += claim["from_dt"]                    # CLM_FROM_DT
+        contents += claim["thru_dt"]                    # CLM_THRU_DT       
+        contents += flt().rjust(24)                     # CLM_LINE_SRVC_UNIT_QTY
+        contents += flt().rjust(17)                     # CLM_LINE_CVRD_PD_AMT
+        contents += random.choice(hcpcsm())             # HCPCS_1_MDFR_CD
+        contents += random.choice(hcpcsm())             # HCPCS_2_MDFR_CD
+        contents += random.choice(hcpcsm())             # HCPCS_3_MDFR_CD
+        contents += random.choice(hcpcsm())             # HCPCS_4_MDFR_CD
 
         # # 21-23
-        contents += random.choice(hcpcsm())     # HCPCS_5_MDFR_CD
+        contents += random.choice(hcpcsm())             # HCPCS_5_MDFR_CD
         contents += random.choice(hipps()).rjust(5)     # CLM_REV_APC_HIPPS_CD
-        contents += pr["oscar"].rjust(20)       # CLM_FAC_PRVDR_OSCAR_NUM
+        contents += pr["oscar"].rjust(20)               # CLM_FAC_PRVDR_OSCAR_NUM
 
         contents += "\n"
 

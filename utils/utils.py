@@ -1,4 +1,5 @@
 # utils.py
+from functools import lru_cache
 import os
 import random
 import string
@@ -69,6 +70,7 @@ def purge_output_folder():
             shutil.rmtree(file_path)  # Remove the directory and its contents
 
 
+@lru_cache(maxsize=None)
 def get_beneficiaries():
     if os.path.exists(f"{cache_path}/beneficiaries.pkl"):
         with open(f"{cache_path}/beneficiaries.pkl", 'rb') as f:
@@ -76,20 +78,34 @@ def get_beneficiaries():
         
     return {}    
 
+
+@lru_cache(maxsize=None)
 def get_claims():
     if os.path.exists(f"{cache_path}/claims.pkl"):
         with open(f"{cache_path}/claims.pkl", 'rb') as f:
             return pickle.load(f)
         
-    print("path does not exist")
     return {}   
 
+
+@lru_cache(maxsize=None)
 def get_providers():
     if os.path.exists(f"{cache_path}/providers.pkl"):
         with open(f"{cache_path}/providers.pkl", 'rb') as f:
             return pickle.load(f)
         
     return {}   
+
+
+def get_bene(mbi):
+    beneficiaries = get_beneficiaries()
+    result = next((bene for bene in beneficiaries if bene["mbi"] == mbi), None)
+    return result
+
+def get_prov(npi):
+    providers = get_providers()
+    result = next((prov for prov in providers if prov["npi"] == npi), None)
+    return result
 
 
 def bdsc():

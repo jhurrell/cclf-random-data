@@ -36,43 +36,43 @@ for month in range(number_of_file_months):
 
     for claim in clm:
         # 1-10
-        contents += claim["num"].ljust(13)      # CUR_CLM_UNIQ_ID
-        contents += claim["mbi"]                # BENE_MBI_ID
-        contents += "".ljust(11)                # BENE_HIC_NUM
-        contents += random.choice(ctc()).rjust(2)       # CLM_TYPE_CD
-        contents += claim["from_dt"]            # CLM_ACTV_CARE_FROM_DT
-        contents += ynb()                       # CLM_NGACO_PBPMT_SW
-        contents += ynb()                       # CLM_NGACO_PDSCHRG_HCBS_SW
-        contents += ynb()                       # CLM_NGACO_SNF_WVR_SW
-        contents += ynb()                       # CLM_NGACO_TLHLTH_SW
-        contents += ynb()                       # CLM_NGACO_CPTATN_SW
+        contents += claim["num"].ljust(13)          # CUR_CLM_UNIQ_ID
+        contents += claim["mbi"]                    # BENE_MBI_ID
+        contents += "".ljust(11)                    # BENE_HIC_NUM
+        contents += random.choice(ctc()).rjust(2)   # CLM_TYPE_CD
+        contents += claim["from_dt"]                # CLM_ACTV_CARE_FROM_DT
+        contents += ynb()                           # CLM_NGACO_PBPMT_SW
+        contents += ynb()                           # CLM_NGACO_PDSCHRG_HCBS_SW
+        contents += ynb()                           # CLM_NGACO_SNF_WVR_SW
+        contents += ynb()                           # CLM_NGACO_TLHLTH_SW
+        contents += ynb()                           # CLM_NGACO_CPTATN_SW
 
         # 11-20
-        contents += twobyte()                   # CLM_DEMO_1ST_NUM
-        contents += twobyte()                   # CLM_DEMO_2ND_NUM
-        contents += twobyte()                   # CLM_DEMO_3RD_NUM
-        contents += twobyte()                   # CLM_DEMO_4TH_NUM
-        contents += twobyte()                   # CLM_DEMO_5TH_NUM
-        contents += dol().rjust(19)             # CLM_PBP_INCLSN_AMT
-        contents += dol().rjust(19)             # CLM_PBP_RDCTN_AMT
-        contents += ynb()                       # CLM_NGACO_CMG_WVR_SW
-        contents += dol().rjust(19)             # CLM_INSTNL_PER_DIEM_AMT
-        contents += dol().rjust(15)             # CLM_MDCR_IP_BENE_DDCTBL_AMT
+        contents += twobyte()                       # CLM_DEMO_1ST_NUM
+        contents += twobyte()                       # CLM_DEMO_2ND_NUM
+        contents += twobyte()                       # CLM_DEMO_3RD_NUM
+        contents += twobyte()                       # CLM_DEMO_4TH_NUM
+        contents += twobyte()                       # CLM_DEMO_5TH_NUM
+        contents += dol().rjust(19)                 # CLM_PBP_INCLSN_AMT
+        contents += dol().rjust(19)                 # CLM_PBP_RDCTN_AMT
+        contents += ynb()                           # CLM_NGACO_CMG_WVR_SW
+        contents += dol().rjust(19)                 # CLM_INSTNL_PER_DIEM_AMT
+        contents += dol().rjust(15)                 # CLM_MDCR_IP_BENE_DDCTBL_AMT
 
         # 21-30
-        contents += dol().rjust(19)      # CLM_MDCR_COINSRNC_AMT
-        contents += dol().rjust(15)      # CLM_BLOOD_LBLTY_AMT
-        contents += dol().rjust(15)      # CLM_INSTNL_PRFNL_AMT
-        contents += dol().rjust(19)      # CLM_NCVRD_CHRG_AMT
-        contents += dol().rjust(19)      # CLM_MDCR_DDCTBL_AMT
-        contents += ynb()                # CLM_RLT_COND_CD
-        contents += dol().rjust(19)      # CLM_OPRTNL_OUTLR_AMT
-        contents += dol().rjust(19)      # CLM_MDCR_NEW_TECH_AMT
-        contents += dol().rjust(19)      # CLM_ISLET_ISOLN_AMT
-        contents += dol().rjust(19)      # CLM_SQSTRTN_RDCTN_AMT
+        contents += dol().rjust(19)                 # CLM_MDCR_COINSRNC_AMT
+        contents += dol().rjust(15)                 # CLM_BLOOD_LBLTY_AMT
+        contents += dol().rjust(15)                 # CLM_INSTNL_PRFNL_AMT
+        contents += dol().rjust(19)                 # CLM_NCVRD_CHRG_AMT
+        contents += dol().rjust(19)                 # CLM_MDCR_DDCTBL_AMT
+        contents += ynb()                           # CLM_RLT_COND_CD
+        contents += dol().rjust(19)                 # CLM_OPRTNL_OUTLR_AMT
+        contents += dol().rjust(19)                 # CLM_MDCR_NEW_TECH_AMT
+        contents += dol().rjust(19)                 # CLM_ISLET_ISOLN_AMT
+        contents += dol().rjust(19)                 # CLM_SQSTRTN_RDCTN_AMT
 
         # 31-33
-        contents += random.choice(cat()).ljust(3)  # CLM_1_REV_CNTR_ANSI_RSN_CD       
+        contents += random.choice(cat()).ljust(3)   # CLM_1_REV_CNTR_ANSI_RSN_CD       
         contents += "??"                            # CLM_1_REV_CNTR_ANSI_GRP_CD
         contents += dol().rjust(19)                 # CLM_MIPS_PMT_AMT
 

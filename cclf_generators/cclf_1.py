@@ -41,7 +41,6 @@ for month in range(number_of_file_months):
 
         # 1-10
         contents += claim["num"].ljust(13)              # CUR_CLM_UNIQ_ID
-        contents += provider["oscar"]                   # PRVDR_OSCAR_NUM
         contents += beneficiary["mbi"]                  # BENE_MBI_ID
         contents += beneficiary["hic"].ljust(11)        # BENE_HIC_NUM
         contents += random.choice(ctc()).ljust(2)       # CLM_TYPE_CD

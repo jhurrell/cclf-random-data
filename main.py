@@ -44,9 +44,9 @@ scripts = [
     "./cclf_generators/cclf_6.py", 
     "./cclf_generators/cclf_7.py", 
     "./cclf_generators/cclf_8.py", 
-    # "./cclf_generators/cclf_9.py", 
-    # "./cclf_generators/cclf_a.py",
-    # "./cclf_generators/cclf_b.py",
+    "./cclf_generators/cclf_9.py", 
+    "./cclf_generators/cclf_a.py",
+    "./cclf_generators/cclf_b.py",
 ]
 
 # Convert the arguments to strins.

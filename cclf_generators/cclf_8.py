@@ -70,7 +70,7 @@ for month in range(number_of_file_months):
         contents += b["zipCode"] 
 
         # # 31-40
-        contents += b["plus4"]              # GEO_ZIP4_CD
+        contents += b["plus4"]                  # GEO_ZIP4_CD
 
         contents += "\n"
 
