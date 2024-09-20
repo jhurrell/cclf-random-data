@@ -3,6 +3,7 @@ import os
 import pickle
 import random
 from faker import Faker
+from utils import ctc, rpt, psc
 
 fake = Faker()
 
@@ -92,7 +93,8 @@ def generate_providers(quantity):
             "npi": "".join(random.choices("0123456789", k=10)),     # NPI
             "fnpi": "".join(random.choices("0123456789", k=10)),    # Facility NPI
             "oscar": "".join(random.choices("0123456789", k=6)),    # OSCAR/CCN
-            
+            "psc": random.choice(psc()),
+            "ein": fake.ein(),
             "firstName": fake.first_name(),
             "lastName": fake.last_name(),
             "gender": random.choice(["0", "1", "U"]),

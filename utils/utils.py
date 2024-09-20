@@ -13,24 +13,30 @@ from claim_admission_type_code  import get_codes as actc_get_codes
 from claim_bill_facility_type_code import get_codes as cbfc_get_codes
 from claim_frequency_code import get_codes as cfc_get_codes
 from claim_outpatient_service_type_code import get_codes as cosc_get_codes
+from claim_product_type_code import get_codes as ptc_get_codes
 from claim_query_code import get_codes as cqc_get_codes
 from claim_service_classification_type_code import get_codes as csc_get_codes
 from claim_source_inpatient_admission_code import get_codes as csaic_get_codes
 from claim_type_code import get_codes as ctc_get_codes
-from drg_code import get_codes as drg_get_codes
-from ffs_patient_discharge_code import get_codes as ffs_get_codes
-from icd import get_codes as icd_get_codes
-from nhc_primary_payer_code import get_codes as nhc_get_codes
-from reason_payment_code import get_codes as rpc_get_codes
-from revenue_code_ffs import get_codes as revo_get_codes
-from hcpcs import get_codes as hcpcs_get_codes
-from hcpcs_mod import get_codes as hcpcs_mod_get_codes
 from cpt import get_codes as cpt_get_codes
 from cpt_mod import get_codes as cpt_mod_get_codes
+from drg_code import get_codes as drg_get_codes
+from ffs_patient_discharge_code import get_codes as ffs_get_codes
+from hcpcs import get_codes as hcpcs_get_codes
+from hcpcs_mod import get_codes as hcpcs_mod_get_codes
 from hipps import get_codes as hipps_get_codes
-from claim_product_type_code import get_codes as ptc_get_codes
+from icd import get_codes as icd_get_codes
+from nhc_primary_payer_code import get_codes as nhc_get_codes
+from place_of_service_code import get_codes as pos_get_codes
 from present_on_admission import get_codes as poa_get_codes
-
+from provider_specialty_code import get_codes as psc_get_codes
+from reason_payment_code import get_codes as rpc_get_codes
+from rendering_provider_type_code import get_codes as rptc_get_codes
+from revenue_code_ffs import get_codes as revo_get_codes
+from type_service_code import get_codes as tsc_get_codes
+from primary_payer_code import get_codes as ppc_get_codes
+from carrier_payment_denial_code import get_codes as cpd_get_codes
+from processing_indicator_code import get_codes as pic_get_codes
 
 fake = Faker()
 
@@ -152,6 +158,21 @@ def cptc():
 def poa():
     return poa_get_codes()
 
+def rpt():
+    return rptc_get_codes()
+
+def psc():
+    return psc_get_codes()
+
+def tsc():
+    return tsc_get_codes()
+
+def pos():
+    return pos_get_codes()
+
+def ppc():
+    return ppc_get_codes()
+
 # Returns a date this year in the format YYYY-MM-DD.
 def dt():
     return fake.date_this_year().strftime("%Y-%m-%d")
@@ -163,6 +184,12 @@ def dol():
 # Returns a float following the pattern #.####.
 def flt():
     return f"{random.uniform(0, 9999):.4f}"
+
+def cpd():
+    return cpd_get_codes()
+
+def pic():
+    return pic_get_codes()
 
 def claim_num(prefix, length):
     characters = string.ascii_letters + string.digits

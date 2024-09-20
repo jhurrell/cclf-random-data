@@ -1,5 +1,4 @@
 # cclf_4.py
-# cclf_3.py
 import random
 import sys
 import sys
