@@ -54,3 +54,25 @@ be realistic or accurate in any way.
 
 - CLM_LINE_CVRD_PD_AMT: specified as X(15) but reads like a dollar amount
 - CLM_LINE_ALOWD_CHRG_AMT: specified as X(17) but reads like a dollar amount
+
+## Todo:
+
+[ ] Months is awkward. All we're doing is starting with 2024-01-01 and adding 1
+month and replicating all the data across the files. Instead, here's what we
+should do:
+
+1. Create Beneficiaries
+2. Create Providers
+3. Starting with current month, create claims that take place in that month.
+4. Subtract one month and create claims that take place in THAT month.
+5. Repeat until we've satisfied the number of months desired.
+
+Claim number should be YYYYMMDD###### so we have unique claim numbers no matter
+what.
+
+That, or we ignore months and do something else. Maybe we specify a month and
+all claims take place in that month.
+
+- ./output/cache
+- ./output/YYYYMMDD/CCLF1/
+- ./output/YYYYMMDD/CCLF2/

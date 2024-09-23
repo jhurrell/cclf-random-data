@@ -49,7 +49,7 @@ from rendering_provider_type import get_codes as rptc_get_codes
 from revenue_code import get_codes as revo_get_codes
 from type_service import get_codes as tsc_get_codes
 
-fake = Faker()
+faker = Faker()
 
 output_path = "./_output"
 cache_path = f"{output_path}/cache"
@@ -217,7 +217,7 @@ def cdc():
 
 # Returns a date this year in the format YYYY-MM-DD.
 def dt():
-    return fake.date_this_year().strftime("%Y-%m-%d")
+    return faker.date_this_year().strftime("%Y-%m-%d")
 
 # Returns a current numberic following the pattern (-)#.##.
 def dol():
@@ -234,7 +234,7 @@ def pic():
     return pic_get_codes()
 
 def ndc():
-    return fake.numerify("###########")
+    return faker.numerify("###########")
 
 def psiqc():
     return psiqc_get_codes()
@@ -257,6 +257,96 @@ def ynb():
 def twobyte():
     return f"{random.randint(0, 255):02X}"
 
+def replicate_files(type, date):
+    # Describe the mapping between the file type and the ZC suffix.
+    suffix_map = { 
+        "CCLF1": "1", 
+        "CCLF2": "2", 
+        "CCLF3": "3", 
+        "CCLF4": "4", 
+        "CCLF5": "5", 
+        "CCLF6": "6", 
+        "CCLF7": "7", 
+        "CCLF8": "8", 
+        "CCLF9": "9", 
+        "CCLFA": "A", 
+        "CCLFB": "B", 
+    }
+    sfx = suffix_map[type]    
+
+    # Generate random characters to fill the filenames.
+    rand_a = faker.pystr(min_chars=3, max_chars=3)
+    rand_b = faker.pystr(min_chars=2, max_chars=2)
+
+    # Define the filename patterns for the main types.
+    primary_file_patterns = {
+        f"P.A{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        f"P.A{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
+        f"P.F{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        f"P.F{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
+        f"P.D{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        f"P.D{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
+        f"P.K{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        f"P.C{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        f"P.P{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+    }
+
+    # Define the output path for the files.
+    output_dir = f"./_output/{date}/{type}"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir, exist_ok=True)
+
+    # Emit the generated data for the primary file.
+    for file in primary_file_patterns:
+        output_file = f"{output_dir}/{file}"
+        print(f"\tCreating {type} {file}...")
+        shutil.copy(f"{cache_path}/{type}.txt", output_file)
+
+
+    # Define the filename patterns for the Summary Statistics.
+    summary_file_patterns = {
+        f"P.A{rand_a}.ACO.ZC0Y{rand_b}.D{date}.T010203t",
+        f"P.A{rand_a}.ACO.ZC0R{rand_b}.D{date}.T010203t",
+        f"P.F{rand_a}.ACO.ZC0Y{rand_b}.D{date}.T010203t",
+        f"P.F{rand_a}.ACO.ZC0R{rand_b}.D{date}.T010203t",
+        f"P.D{rand_a}.ACO.ZC0Y{rand_b}.D{date}.T010203t",
+        f"P.D{rand_a}.ACO.ZC0R{rand_b}.D{date}.T010203t",
+        f"P.K{rand_a}.ACO.ZC0Y{rand_b}.D{date}.T010203t",
+        f"P.C{rand_a}.ACO.ZC0Y{rand_b}.D{date}.T010203t",
+        f"P.P{rand_a}.ACO.ZC0Y{rand_b}.D{date}.T010203t",        
+    }
+
+    # Describe the mapping between the type and the name that will appear in the 
+    # Summary Statistics.
+    name_map = { 
+        "CCLF1": "Part A Claims Header File.", 
+        "CCLF2": "Part A Claims Revenue Center Detail File.", 
+        "CCLF3": "Part A Procedure Code File.", 
+        "CCLF4": "Part A Diagnosis Code File", 
+        "CCLF5": "Part B Physicians File.", 
+        "CCLF6": "Part B DME File.", 
+        "CCLF7": "Part D File.", 
+        "CCLF8": "Beneficiary Demographics File.", 
+        "CCLF9": "BENE XREF File.", 
+        "CCLFA": "Part A BE and Demo Codes File.", 
+        "CCLFB": "Part B BE and Demo Codes File.", 
+    }
+    name = name_map[type]     
+
+
+    # Emit data for the summary files.
+    for file in summary_file_patterns:
+        print(f"\tCreating CCLF0 {file}...")
+        with open(f"{output_dir}/{file}", "w") as f:
+            # Table 25
+            f.write(f"{"123".ljust(13)}|{"WHATEVER".ljust(20)}|{"456".ljust(20)}|{"789".ljust(13)}\n")            
+
+            # Table 26
+            if file.startswith(("P.A", "P.F", "P.P")):
+                f.write(f"{str(type).ljust(7)}|{name.ljust(43)}|{"456".ljust(11)}|{"789".ljust(5)}{str().ljust(1)}\n")          
+               
+
+
 def generate_files(type, date, contents):
     print(f"{type} for {date} processing...")
 
@@ -277,8 +367,8 @@ def generate_files(type, date, contents):
     sfx = suffix_map[type]
 
     # Generate random characters to fill the filenames.
-    rand_a = fake.pystr(min_chars=3, max_chars=3)
-    rand_b = fake.pystr(min_chars=2, max_chars=2)
+    rand_a = faker.pystr(min_chars=3, max_chars=3)
+    rand_b = faker.pystr(min_chars=2, max_chars=2)
 
     # Define the filename patterns for the main types.
     primary_file_patterns = {
