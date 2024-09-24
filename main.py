@@ -17,7 +17,7 @@ number_of_providers = 200
 
 # Specifies the number of claims that will be generated and in which month
 # and year.
-number_of_claims = 50000
+number_of_claims = 1000
 claims_year = 2024
 claims_month = 9
 
