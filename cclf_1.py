@@ -49,6 +49,7 @@ with open(f"{directory}/{file_name}", "w") as f:
 
         # 1-10
         line += claim["num"].ljust(13)              # CUR_CLM_UNIQ_ID
+        line += prov["oscar"]                       # PRVDR_OSCAR_NUM
         line += bene["mbi"]                         # BENE_MBI_ID
         line += bene["hic"].ljust(11)               # BENE_HIC_NUM
         line += random.choice(ctc()).ljust(2)       # CLM_TYPE_CD
@@ -58,7 +59,7 @@ with open(f"{directory}/{file_name}", "w") as f:
         line += random.choice(csc())                # CLM_BILL_CLSFCTN_CD
         line += random.choice(icd())["code"].rjust(7)     # PRNCPL_DGNS_CD
 
-        # 11-20
+        11-20
         line += random.choice(icd())["code"].rjust(7)     # ADMTG_DGNS_CD
         line += random.choice(nprc()).ljust(2)      # CLM_MDCR_NPMT_RSN_CD
         line += dol().rjust(17)                     # CLM_PMT_AMT
@@ -100,6 +101,7 @@ with open(f"{directory}/{file_name}", "w") as f:
         line += claim["ccn"].rjust(40)              # CLM_CNTL_NUM
         line += claim["ocn"].rjust(40)              # CLM_ORG_CNTL_NUM
         line += claim["mac"]                        # CLM_ORG_CNTL_NUM
+        
         line += "\n"
 
         f.write(line)  
