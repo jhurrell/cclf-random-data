@@ -103,13 +103,11 @@ def generate_providers(quantity):
 
 
 def generate_claims(quantity, claims_year, claims_month):
-    pad_size = 1 + len(str(quantity))
-
     for ic in range(quantity):
 
         # Prepare the claim
         claim_number = ic + 1
-        num = f"CN{str(claim_number).zfill(pad_size)}"
+        num = str(claim_number)
         cd = get_date_in_month(claims_year, claims_month)
         bene = random.choice(list(beneficiaries.values()))
         prov = random.choice(list(providers.values()))
