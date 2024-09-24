@@ -1,4 +1,5 @@
 # utils.py
+import datetime
 import os
 import random
 import pickle
@@ -258,6 +259,13 @@ def twobyte():
     return f"{random.randint(0, 255):02X}"
 
 def replicate_files(type, date):
+    print(f"{type} for {date} processing...")
+
+    date = datetime.datetime.strptime(date, "%Y-%m-%d")
+    date = date.strftime("%y%m%d")
+    print(date)
+
+
     # Describe the mapping between the file type and the ZC suffix.
     suffix_map = { 
         "CCLF1": "1", 
