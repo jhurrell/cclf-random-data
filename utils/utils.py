@@ -33,6 +33,8 @@ from cpt_mod import get_codes as cpt_mod_get_codes
 from daw_product_selection import get_codes as daw_get_codes
 from drg import get_codes as drg_get_codes
 from ffs_patient_discharge import get_codes as ffs_get_codes
+from fips_county import get_codes as fips_county_get_codes
+from fips_state import get_codes as fips_state_get_codes
 from hcpcs import get_codes as hcpcs_get_codes
 from hcpcs_mod import get_codes as hcpcs_mod_get_codes
 from hipps import get_codes as hipps_get_codes
@@ -106,6 +108,11 @@ def get_prov(npi):
     providers = get_providers()
     return providers[npi]
 
+def fips_county():
+    return fips_county_get_codes()
+
+def fips_state():
+    return fips_state_get_codes()
 
 def bdsc():
     return bdsc_get_codes()

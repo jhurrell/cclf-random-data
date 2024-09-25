@@ -115,7 +115,7 @@ with open(f"{directory}/{file_name}", "w") as f:
             line += claim["mac"]                            # CLM_CNTRCTR_NUM
             line += "\n"
 
-        f.write(line)  
+            f.write(line)  
     
 print(f"CCLF5 Processing for {file_date}: Complete")
 replicate_files("CCLF5", file_date)    

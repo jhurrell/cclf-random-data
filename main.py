@@ -19,7 +19,7 @@ number_of_providers = 200
 # and year.
 number_of_claims = 1000
 claims_year = 2024
-claims_month = 9
+claims_month = 8
 
 
 # Clean up date from previous runs.
@@ -27,7 +27,6 @@ purge_output_folder()
 
 # Prepare the caches.
 cache_all(number_of_beneficiaries, number_of_providers, number_of_claims, claims_year, claims_month)
-
 
 # Specifies the scripts that will be called each time main is executed.
 scripts = [

@@ -5,7 +5,7 @@ import random
 import calendar
 from datetime import date, timedelta
 from faker import Faker
-from utils import psc, brc
+from utils import psc, brc, fips_county, fips_state
 
 faker = Faker()
 
@@ -69,6 +69,8 @@ def generate_beneficiaries(quantity):
             "city": faker.city(),
             "county": faker.country()[:3].upper(),
             "state": faker.state_abbr(),
+            "fips_state": random.choice(fips_state()),
+            "fips_county": random.choice(fips_county()),
             "zipCode": faker.postcode(),
             "plus4": faker.postalcode_plus4()[-4:]
         }

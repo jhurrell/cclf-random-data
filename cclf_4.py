@@ -61,7 +61,7 @@ with open(f"{directory}/{file_name}", "w") as f:
 
         # 11-13
         line += claim["thru_dt"]                # CLM_THRU_DT   
-        line += random.choice(poa()).rjust(6)   # CLM_POA_IND
+        line += random.choice(poa()).rjust(7)   # CLM_POA_IND
         line += diag["ver"]                     # DGNS_PRCDR_ICD_IND
         line += prov["oscar"].rjust(20)         # CLM_BLG_PRVDR_OSCAR_NUM
         line += "\n"

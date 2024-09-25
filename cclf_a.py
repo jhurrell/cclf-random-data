@@ -74,7 +74,7 @@ with open(f"{directory}/{file_name}", "w") as f:
         line += dol().rjust(15)                 # CLM_INSTNL_PRFNL_AMT
         line += dol().rjust(19)                 # CLM_NCVRD_CHRG_AMT
         line += dol().rjust(19)                 # CLM_MDCR_DDCTBL_AMT
-        line += ynb()                           # CLM_RLT_COND_CD
+        line += "??".ljust(2)                   # CLM_RLT_COND_CD
         line += dol().rjust(19)                 # CLM_OPRTNL_OUTLR_AMT
         line += dol().rjust(19)                 # CLM_MDCR_NEW_TECH_AMT
         line += dol().rjust(19)                 # CLM_ISLET_ISOLN_AMT
@@ -82,7 +82,7 @@ with open(f"{directory}/{file_name}", "w") as f:
 
         # 31-33
         line += random.choice(cat()).ljust(3)   # CLM_1_REV_CNTR_ANSI_RSN_CD       
-        line += "??"                            # CLM_1_REV_CNTR_ANSI_GRP_CD
+        line += "??".ljust(2)                   # CLM_1_REV_CNTR_ANSI_GRP_CD
         line += dol().rjust(19)                 # CLM_MIPS_PMT_AMT
 
         line += "\n"

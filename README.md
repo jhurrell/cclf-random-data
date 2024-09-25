@@ -49,11 +49,14 @@ be realistic or accurate in any way.
 - [Patient Discharge Status Code (FFS)](https://resdac.org/cms-data/variables/patient-discharge-status-code-ffs)
 - [Revenue Center APC or HIPPS Code](https://resdac.org/cms-data/variables/revenue-center-apc-or-hipps-code)
 - [Revenue Center Code (FFS)](https://resdac.org/cms-data/variables/revenue-center-code-ffs)
+- [FIPS State and County Codes](https://transition.fcc.gov/oet/info/maps/census/fips/fips.txt)
 
 ## Outstanding questions
 
 - CLM_LINE_CVRD_PD_AMT: specified as X(15) but reads like a dollar amount
 - CLM_LINE_ALOWD_CHRG_AMT: specified as X(17) but reads like a dollar amount
+- FIPS Codes for State and County are zero-prefixed but we treat them as int in Athena. This might not be ideal if we use lookups.
+
 
 ## Todo:
 

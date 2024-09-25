@@ -8,5 +8,7 @@ def get_codes():
         "40",      # Outpatient claim
         "50",      # Hospice claim
         "60",      # Inpatient claim
-        "61",      # Inpatient “Full-Encounter” claim        
+        "61",      # Inpatient “Full-Encounter” claim
+        "71",      # RIC O local carrier non-DMEPOS claim (CCLF5)
+        "71",      # RIC O local carrier DMEPOS claim (CCLF5)
     ]

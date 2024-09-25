@@ -48,8 +48,8 @@ with open(f"{directory}/{file_name}", "w") as f:
         # 1-10
         line += bene["mbi"]                     # BENE_MBI_ID
         line += "".ljust(11)                    # BENE_HIC_NUM
-        line += bene["state"]                   # BENE_FIPS_STATE_CD
-        line += bene["county"].ljust(3)         # BENE_FIPS_CNTY_CD
+        line += bene["fips_state"]              # BENE_FIPS_STATE_CD
+        line += bene["fips_county"]             # BENE_FIPS_CNTY_CD
         line += bene["zipCode"].ljust(5)        # BENE_ZIP_CD
         line += bene["dob"]                     # BENE_DOB
         line += bene["gender"]                  # BENE_SEX_CD  
@@ -85,7 +85,6 @@ with open(f"{directory}/{file_name}", "w") as f:
         line += bene["plus4"]                   # GEO_ZIP4_CD
 
         line += "\n"
-
         f.write(line)  
     
 print(f"CCLF8 Processing for {file_date}: Complete")
