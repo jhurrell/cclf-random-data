@@ -27,7 +27,6 @@ purge_output_folder()
 
 # Prepare the caches.
 cache_all(number_of_beneficiaries, number_of_providers, number_of_claims, claims_year, claims_month)
-exit()
 
 # Specifies the scripts that will be called each time main is executed.
 scripts = [
