@@ -9,15 +9,15 @@ from caches import cache_all
 
 # Specifies the total population size of beneficiaries that can be randomly
 # chosen and used to generate files.
-number_of_beneficiaries = 100
+number_of_beneficiaries = 1000
 
 # Specifies the total population size of beneficiaries that can be randomly
 # chosen and used to generate files.
-number_of_providers = 200
+number_of_providers = 2000
 
 # Specifies the number of claims that will be generated and in which month
 # and year.
-number_of_claims = 1000
+number_of_claims = 10000
 claims_year = 2024
 claims_month = 8
 
@@ -27,6 +27,7 @@ purge_output_folder()
 
 # Prepare the caches.
 cache_all(number_of_beneficiaries, number_of_providers, number_of_claims, claims_year, claims_month)
+exit()
 
 # Specifies the scripts that will be called each time main is executed.
 scripts = [

@@ -56,6 +56,7 @@ be realistic or accurate in any way.
 - CLM_LINE_CVRD_PD_AMT: specified as X(15) but reads like a dollar amount
 - CLM_LINE_ALOWD_CHRG_AMT: specified as X(17) but reads like a dollar amount
 - FIPS Codes for State and County are zero-prefixed but we treat them as int in Athena. This might not be ideal if we use lookups.
+- CCLF0, Table 26 indicates that start position is 70, end position is 70 but length is 1. I filled it with a space but the Lambda assumes there is no data. Which is correct?
 
 
 ## Todo:
