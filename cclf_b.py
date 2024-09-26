@@ -78,7 +78,7 @@ with open(f"{directory}/{file_name}", "w") as f:
 
             line += "\n"
 
-        f.write(line)  
+            f.write(line)  
     
 print(f"CCLFB Processing for {file_date}: Complete")
 replicate_files("CCLFB", file_date)        

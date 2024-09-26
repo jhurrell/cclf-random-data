@@ -130,8 +130,6 @@ def generate_claims(quantity, claims_year, claims_month):
             "lines": []
         }
 
-        print(claim)
-
         # Generate between 1 and 5 claim lines per claim.
         for icl in range(1, random.randint(1, 5)):
             cld = (cd + timedelta(days=random.randint(0, 7)))
