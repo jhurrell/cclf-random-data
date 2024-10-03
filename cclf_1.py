@@ -52,7 +52,7 @@ with open(f"{directory}/{file_name}", "w") as f:
         line += prov["oscar"]                       # PRVDR_OSCAR_NUM
         line += bene["mbi"]                         # BENE_MBI_ID
         line += bene["hic"].ljust(11)               # BENE_HIC_NUM
-        line += random.choice(ctc()).ljust(2)       # CLM_TYPE_CD
+        line += claim["ctc"].ljust(2)               # CLM_TYPE_CD
         line += claim["from_dt"]                    # CLM_FROM_DT
         line += claim["thru_dt"]                    # CLM_THRU_DT
         line += random.choice(cbfc())               # CLM_BILL_FAC_TYPE_CD

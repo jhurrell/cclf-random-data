@@ -5,7 +5,7 @@ import random
 import calendar
 from datetime import date, timedelta
 from faker import Faker
-from utils import psc, brc, fips_county, fips_state
+from utils import psc, brc, fips_county, fips_state, ctc
 
 faker = Faker()
 
@@ -24,17 +24,17 @@ def cache_all(number_of_beneficiaries, number_of_providers, number_of_claims, cl
     cache_claims(number_of_claims, claims_year, claims_month)
 
 def cache_beneficiaries(number_of_beneficiaries):
-    print(f"\tBeneficiaries: {number_of_beneficiaries}")
+    print(f"\tBeneficiaries : {number_of_beneficiaries:,}")
     generate_beneficiaries(number_of_beneficiaries)
     cache_data("beneficiaries", beneficiaries)
 
 def cache_providers(number_of_providers):
-    print(f"\tProviders: {number_of_providers}")
+    print(f"\tProviders     : {number_of_providers:,}")
     generate_providers(number_of_providers)
     cache_data("providers", providers)    
 
 def cache_claims(number_of_claims, claims_year, claims_month):
-    print(f"\tClaims: {number_of_claims}")
+    print(f"\tClaims        : {number_of_claims:,}")
     generate_claims(number_of_claims, claims_year, claims_month)
     cache_data("claims", claims)
 
@@ -105,26 +105,24 @@ def generate_providers(quantity):
 
 
 def generate_claims(quantity, claims_year, claims_month):
-
     pad_size = 1 + len(str(quantity))
 
+    for index in range(quantity):
 
-    for ic in range(quantity):
-
-        # Prepare the claim
-        claim_number = ic + 1
-        num = f"{claims_year}{claims_month:02}{str(claim_number).zfill(pad_size)}"
-        cd = get_date_in_month(claims_year, claims_month)
+        # Prepare the claim.
+        claim_date = get_date_in_month(claims_year, claims_month)
         bene = random.choice(list(beneficiaries.values()))
         prov = random.choice(list(providers.values()))
 
+        # Generate the claim.
         claim = {
-            "num": num,
+            "num": f"{claims_year}{claims_month:02}{str(index + 1).zfill(pad_size)}",
+            "ctc": random.choice(ctc()),
             "ccn": faker.numerify("A#######"),
             "ocn": faker.numerify("B#######"),
             "mac": faker.numerify("MC###"),
-            "from_dt": cd.strftime("%Y-%m-%d"),
-            "thru_dt": (cd + timedelta(days=random.randint(0, 7))).strftime("%Y-%m-%d"),
+            "from_dt": claim_date.strftime("%Y-%m-%d"),
+            "thru_dt": (claim_date + timedelta(days=random.randint(0, 7))).strftime("%Y-%m-%d"),
             "mbi": bene["mbi"],
             "npi": prov["npi"],
             "lines": []
@@ -132,11 +130,11 @@ def generate_claims(quantity, claims_year, claims_month):
 
         # Generate between 1 and 5 claim lines per claim.
         for icl in range(1, random.randint(1, 5)):
-            cld = (cd + timedelta(days=random.randint(0, 7)))
+            cld = (claim_date + timedelta(days=random.randint(0, 7))).strftime("%Y-%m-%d")
             line = {
                 "ln": f"{icl}",
-                "from_dt": cld.strftime("%Y-%m-%d"),
-                "thru_dt": cld.strftime("%Y-%m-%d"),
+                "from_dt": cld,
+                "thru_dt": cld,
             }
 
             claim["lines"].append(line)

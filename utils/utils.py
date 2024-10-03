@@ -268,10 +268,10 @@ def twobyte():
 def replicate_files(type, date):
     print(f"{type} for {date} processing...")
 
+    # Create a date from the string.
     date = datetime.datetime.strptime(date, "%Y-%m-%d")
     date = date.strftime("%y%m%d")
-    print(date)
-
+    premium_year = date[:2]
 
     # Describe the mapping between the file type and the ZC suffix.
     suffix_map = { 
@@ -291,19 +291,18 @@ def replicate_files(type, date):
 
     # Generate random characters to fill the filenames.
     rand_a = faker.pystr(min_chars=3, max_chars=3)
-    rand_b = faker.pystr(min_chars=2, max_chars=2)
 
     # Define the filename patterns for the main types.
     primary_file_patterns = {
-        f"P.A{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        f"P.A{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
-        f"P.F{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        f"P.F{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
-        f"P.D{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        f"P.D{rand_a}.ACO.ZC{sfx}R{rand_b}.D{date}.T010203t",
-        f"P.K{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        f"P.C{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
-        f"P.P{rand_a}.ACO.ZC{sfx}Y{rand_b}.D{date}.T010203t",
+        f"P.A{rand_a}.ACO.ZC{sfx}Y{premium_year}.D{date}.T010203t",
+        f"P.A{rand_a}.ACO.ZC{sfx}R{premium_year}.D{date}.T010203t",
+        f"P.F{rand_a}.ACO.ZC{sfx}Y{premium_year}.D{date}.T010203t",
+        f"P.F{rand_a}.ACO.ZC{sfx}R{premium_year}.D{date}.T010203t",
+        f"P.D{rand_a}.ACO.ZC{sfx}Y{premium_year}.D{date}.T010203t",
+        f"P.D{rand_a}.ACO.ZC{sfx}R{premium_year}.D{date}.T010203t",
+        f"P.K{rand_a}.ACO.ZC{sfx}Y{premium_year}.D{date}.T010203t",
+        f"P.C{rand_a}.ACO.ZC{sfx}Y{premium_year}.D{date}.T010203t",
+        f"P.P{rand_a}.ACO.ZC{sfx}Y{premium_year}.D{date}.T010203t",
     }
 
     # Define the output path for the files.
@@ -320,15 +319,15 @@ def replicate_files(type, date):
 
     # Define the filename patterns for the Summary Statistics.
     summary_file_patterns = {
-        f"P.A{rand_a}.ACO.ZC0Y{rand_b}.D{date}.T010203t",
-        f"P.A{rand_a}.ACO.ZC0R{rand_b}.D{date}.T010203t",
-        f"P.F{rand_a}.ACO.ZC0Y{rand_b}.D{date}.T010203t",
-        f"P.F{rand_a}.ACO.ZC0R{rand_b}.D{date}.T010203t",
-        f"P.D{rand_a}.ACO.ZC0Y{rand_b}.D{date}.T010203t",
-        f"P.D{rand_a}.ACO.ZC0R{rand_b}.D{date}.T010203t",
-        f"P.K{rand_a}.ACO.ZC0Y{rand_b}.D{date}.T010203t",
-        f"P.C{rand_a}.ACO.ZC0Y{rand_b}.D{date}.T010203t",
-        f"P.P{rand_a}.ACO.ZC0Y{rand_b}.D{date}.T010203t",        
+        f"P.A{rand_a}.ACO.ZC0Y{premium_year}.D{date}.T010203t",
+        f"P.A{rand_a}.ACO.ZC0R{premium_year}.D{date}.T010203t",
+        f"P.F{rand_a}.ACO.ZC0Y{premium_year}.D{date}.T010203t",
+        f"P.F{rand_a}.ACO.ZC0R{premium_year}.D{date}.T010203t",
+        f"P.D{rand_a}.ACO.ZC0Y{premium_year}.D{date}.T010203t",
+        f"P.D{rand_a}.ACO.ZC0R{premium_year}.D{date}.T010203t",
+        f"P.K{rand_a}.ACO.ZC0Y{premium_year}.D{date}.T010203t",
+        f"P.C{rand_a}.ACO.ZC0Y{premium_year}.D{date}.T010203t",
+        f"P.P{rand_a}.ACO.ZC0Y{premium_year}.D{date}.T010203t",        
     }
 
     # Describe the mapping between the type and the name that will appear in the 
